@@ -33,6 +33,12 @@ public class PlayerMovement : MonoBehaviour
 
             }
 
+        } else
+        {
+            if (characterController.transform.position.y <= 25)
+            {
+
+            }
         }
 
         characterMoveDirection.y -= gravityForce * Time.deltaTime;

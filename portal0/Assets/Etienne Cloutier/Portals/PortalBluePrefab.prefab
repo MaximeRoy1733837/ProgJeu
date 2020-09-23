@@ -44,8 +44,9 @@ GameObject:
   - component: {fileID: 2593260955941749535}
   - component: {fileID: 4362497202992669510}
   - component: {fileID: 9033575757399704901}
+  - component: {fileID: 198623451976152272}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Contour
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,7 +92,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1f65a328307e6314db1fa2ee8a0cf530, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,6 +113,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &198623451976152272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2671263522504788755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8dd6dbaf5f774545a39d63bafc06d1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3630517563871886017
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +184,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 66a954c6b1d4d254393fc37be359a4ca, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -229,13 +242,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7920541781001151398}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.070051745, y: -0.014949626, z: 0.029503452, w: 0.9969949}
   m_LocalPosition: {x: 0.3, y: 3.2642057, z: -6.0341024}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3777850921759193239}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -7.978, y: -1.9640001, z: 3.5270002}
 --- !u!20 &7946656312692278316
 Camera:
   m_ObjectHideFlags: 0
@@ -269,7 +282,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: d1e84df485c7ab542a94d1c3069cf151, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -291,6 +304,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eb4e91ff5efd184cae4658c73a7b907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
   portal: {fileID: 4928505064507019566}
   otherPortal: {fileID: 0}

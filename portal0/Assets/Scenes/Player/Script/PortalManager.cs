@@ -15,45 +15,51 @@ public class PortalManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        portalBlue = null;
+        portalOrange = null;
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         portalCooldownLeft -= Time.deltaTime;
         if(portalCooldownLeft<=0)
         {
             if (Input.GetAxis("Fire1") != 0)
             {
-                CreatePortal(portalBlue,new Color(41, 2, 181,255));
+                portalBlue = CreatePortal(portalBlue,new Color(41, 2, 181));
                 portalCooldownLeft = portalCooldown;
+                ReSyncPortals();
             }
             else if (Input.GetAxis("Fire2") != 0)
             {
-                CreatePortal(portalOrange,new Color(242, 120, 19,0));
+                Destroy(portalOrange);
+                portalOrange = CreatePortal(portalOrange,new Color(242, 120, 19));
                 portalCooldownLeft = portalCooldown;
+                ReSyncPortals();
             }
         }
     }
 
-    void CreatePortal(GameObject portal,Color aColor)
+    GameObject CreatePortal(GameObject portal,Color aColor)
     {
         if(portal !=null)
         {
-            Destroy(portal);
+            Destroy(portal,0.01f);
         }
         PortalCamera aCamera;
 
         portal = Instantiate(PortalPrefab, transform.position, transform.rotation);
         aCamera = portal.GetComponentInChildren<PortalCamera>();
         SetMaterial(portal,aCamera,aColor);
+        return portal;
     }
 
     void SetMaterial(GameObject portal, PortalCamera aCamera,Color aColor)
     {
         portal.GetComponentInChildren<PortalCenter>().GetComponent<Renderer>().material = aCamera.GetMaterial();
-        portal.GetComponentInChildren<PortalContour>().GetComponent<Renderer>().material.color = aColor;
+        //portal.GetComponentInChildren<PortalContour>().SetColor(aColor);
+        //portal.GetComponentInChildren<PortalContour>().GetComponent<Renderer>().material.color = aColor;
     }
 
     void SetMaterial(GameObject portal,Color color)
@@ -84,14 +90,9 @@ public class PortalManager : MonoBehaviour
 
         if(doExist)
         {
-           // portalBlue.GetComponentInChildren<PortalCamera>().ResetTexture();
            portalBlue.GetComponentInChildren<PortalCamera>().UpdateOtherPortal(portalOrange.transform);
            portalOrange.GetComponentInChildren<PortalCamera>().UpdateOtherPortal(portalBlue.transform);
-            /* PortalCamera aCamera = portalBlue.GetComponentInChildren<PortalCamera>();
-             SetMaterial(portalBlue, aCamera);
-             aCamera= portalOrange.GetComponentInChildren<PortalCamera>();
-             SetMaterial(portalOrange, aCamera);*/
         }
        
-    }
+    }*/
 }

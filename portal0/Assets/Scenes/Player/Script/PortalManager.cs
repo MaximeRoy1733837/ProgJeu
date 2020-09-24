@@ -20,7 +20,7 @@ public class PortalManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         portalCooldownLeft -= Time.deltaTime;
         if(portalCooldownLeft<=0)
@@ -94,5 +94,5 @@ public class PortalManager : MonoBehaviour
            portalOrange.GetComponentInChildren<PortalCamera>().UpdateOtherPortal(portalBlue.transform);
         }
        
-    }
+    }*/
 }

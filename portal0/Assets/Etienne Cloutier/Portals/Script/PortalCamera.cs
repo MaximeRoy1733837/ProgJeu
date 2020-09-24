@@ -8,7 +8,7 @@ public class PortalCamera : MonoBehaviour
 {
     private Camera myCamera;
 
-    private Transform playerCamera;
+    public Transform playerCamera;
     public Transform portal;
     public Transform otherPortal;
 
@@ -16,14 +16,14 @@ public class PortalCamera : MonoBehaviour
     private RenderTexture renderTexture;
     void Awake()
     {
-        myCamera = GetComponent<Camera>();
-        ResetTexture();
+       /* myCamera = GetComponent<Camera>();
+        ResetTexture();*/
         /*otherPortal.rotation = new Quaternion();
         otherPortal.position = new Vector3(0, 0, 0);*/
     }
     void Start()
     {
-        playerCamera = FindObjectOfType<CharacterController>().transform;
+        //playerCamera = FindObjectOfType<CharacterController>().transform;
 
     }
     void Update()
@@ -40,7 +40,7 @@ public class PortalCamera : MonoBehaviour
         transform.rotation *= Quaternion.Euler(0, -180, 0);
     }
 
-    public void ResetTexture()
+    /*public void ResetTexture()
     {
         cameraMaterial = new Material(Shader.Find("Standard"));
 
@@ -58,6 +58,6 @@ public class PortalCamera : MonoBehaviour
     public Material GetMaterial()
     {
         return cameraMaterial;
-    }
+    }*/
 
 }

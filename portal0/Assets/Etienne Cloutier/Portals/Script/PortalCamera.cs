@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
 using UnityEngine;
@@ -16,8 +17,8 @@ public class PortalCamera : MonoBehaviour
     private RenderTexture renderTexture;
     void Awake()
     {
-       /* myCamera = GetComponent<Camera>();
-        ResetTexture();*/
+        myCamera = GetComponent<Camera>();
+        //ResetTexture();
         /*otherPortal.rotation = new Quaternion();
         otherPortal.position = new Vector3(0, 0, 0);*/
     }
@@ -27,15 +28,7 @@ public class PortalCamera : MonoBehaviour
 
     }
     void Update()
-    {
-       // transform.position = new Vector3(0, 0, 0);
-
-        //portal cam rotation
-        float angularDifferenceBetweenPortalRotation = Quaternion.Angle(otherPortal.rotation, portal.rotation);
-        Quaternion portalRotationalDifference = Quaternion.AngleAxis(angularDifferenceBetweenPortalRotation, Vector3.up);
-        Vector3 newCameraDirection = (portalRotationalDifference * playerCamera.forward);
-        transform.rotation = Quaternion.LookRotation(newCameraDirection, Vector3.up);
-
+    {   
         //portal cam position
         Vector3 playerOffsetFromPortal = (playerCamera.position - portal.position);
         //in prtal frame Px Py Pz (C.C.)
@@ -46,9 +39,20 @@ public class PortalCamera : MonoBehaviour
         Vector3 playerOffsetFromOtherPortal = otherPortal.up*py -otherPortal.right*px - otherPortal.forward*pz;
         transform.position = otherPortal.position + playerOffsetFromOtherPortal;
 
+
+        //portal cam rotation
+        float angularDifferenceBetweenPortalRotation = Quaternion.Angle(otherPortal.rotation, portal.rotation);
+        Quaternion portalRotationalDifference = Quaternion.AngleAxis(angularDifferenceBetweenPortalRotation, Vector3.up);
+        Vector3 newCameraDirection = (portalRotationalDifference * (new Vector3(-playerCamera.forward.x,playerCamera.forward.y,-playerCamera.forward.z)));
+        //transform.rotation = portalRotationalDifference * playerCamera.rotation;
+        //transform.rotation = Quaternion.LookRotation(newCameraDirection, Vector3.up);
+
+        Quaternion reverse = new Quaternion(0,1,0,0);
+        //transform.rotation = (playerCamera.rotation * Quaternion.Inverse(portal.rotation)*reverse)*otherPortal.rotation ;
+        transform.rotation = otherPortal.rotation * reverse*Quaternion.Inverse(portal.rotation)*playerCamera.rotation   ;
     }
 
-    /*public void ResetTexture()
+   /* public void ResetTexture()
     {
         cameraMaterial = new Material(Shader.Find("Standard"));
 

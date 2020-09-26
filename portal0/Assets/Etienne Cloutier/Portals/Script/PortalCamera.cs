@@ -29,15 +29,23 @@ public class PortalCamera : MonoBehaviour
     void Update()
     {
        // transform.position = new Vector3(0, 0, 0);
-        //portal cam position
-        Vector3 playerOffsetFromPortal = playerCamera.position - portal.position;
-        transform.position = otherPortal.position - playerOffsetFromPortal;
+
         //portal cam rotation
         float angularDifferenceBetweenPortalRotation = Quaternion.Angle(otherPortal.rotation, portal.rotation);
         Quaternion portalRotationalDifference = Quaternion.AngleAxis(angularDifferenceBetweenPortalRotation, Vector3.up);
         Vector3 newCameraDirection = (portalRotationalDifference * playerCamera.forward);
-        transform.rotation = Quaternion.LookRotation(newCameraDirection, Vector3.up); 
-        transform.rotation *= Quaternion.Euler(0, -180, 0);
+        transform.rotation = Quaternion.LookRotation(newCameraDirection, Vector3.up);
+
+        //portal cam position
+        Vector3 playerOffsetFromPortal = (playerCamera.position - portal.position);
+        //in prtal frame Px Py Pz (C.C.)
+        float px = Vector3.Dot(playerOffsetFromPortal,portal.right);
+        float py = Vector3.Dot(playerOffsetFromPortal,portal.up);
+        float pz= Vector3.Dot(playerOffsetFromPortal,portal.forward);
+
+        Vector3 playerOffsetFromOtherPortal = otherPortal.up*py -otherPortal.right*px - otherPortal.forward*pz;
+        transform.position = otherPortal.position + playerOffsetFromOtherPortal;
+
     }
 
     /*public void ResetTexture()

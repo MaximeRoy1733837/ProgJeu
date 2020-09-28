@@ -8,7 +8,7 @@ public class PortalContour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<PortalContour>().GetComponent<Renderer>().material.color=myColor;
+        //GetComponent<PortalContour>().GetComponent<Renderer>().material.color=myColor;
     }
 
     // Update is called once per frame
@@ -18,6 +18,6 @@ public class PortalContour : MonoBehaviour
     }
     public void SetColor(Color aColor)
     {
-        myColor = aColor;
+       // myColor = aColor;
     }
 }

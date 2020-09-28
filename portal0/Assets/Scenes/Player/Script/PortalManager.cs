@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PortalManager : MonoBehaviour
@@ -27,14 +28,14 @@ public class PortalManager : MonoBehaviour
         {
             if (Input.GetAxis("Fire1") != 0)
             {
-                portalBlue = CreatePortal(portalBlue,new Color(41, 2, 181));
+                portalBlue = CreatePortal(portalBlue,new Color(41f / 255, 2f / 255, 181f / 255));
                 portalCooldownLeft = portalCooldown;
                 ReSyncPortals();
             }
             else if (Input.GetAxis("Fire2") != 0)
             {
                 Destroy(portalOrange);
-                portalOrange = CreatePortal(portalOrange,new Color(242, 120, 19));
+                portalOrange = CreatePortal(portalOrange,new Color(242f / 255, 120f / 255, 19f/255));
                 portalCooldownLeft = portalCooldown;
                 ReSyncPortals();
             }
@@ -58,45 +59,39 @@ public class PortalManager : MonoBehaviour
     void SetMaterial(GameObject portal, PortalCamera aCamera,Color aColor)
     {
         portal.GetComponentInChildren<PortalCenter>().GetComponent<Renderer>().material = aCamera.GetMaterial();
-        //portal.GetComponentInChildren<PortalContour>().GetComponent<Renderer>().material.SetColor("_Color",new Color(aColor.r, aColor.g, aColor.b)); 
-        portal.GetComponentInChildren<PortalContour>().SetColor(aColor);
+        portal.GetComponentInChildren<PortalContour>().GetComponent<Renderer>().material.color= aColor; 
     }
 
     void SetMaterial(GameObject portal,Color color)
     {
-        //portal.GetComponentInChildren<PortalCenter>().GetComponent<Renderer>().material.color = color;
         Renderer portalRender = portal.GetComponentInChildren<PortalCenter>().GetComponent<Renderer>();
-        //portalRender.material = new Material(Shader.Find("Standard"));
-        //portalRender.material.mainTexture = new
-        portalRender.material.mainTexture = new RenderTexture(10, 10, 24);
-        portalRender.material.color = Color.red;
     }
 
     void ReSyncPortals() 
     {
         Boolean doExist = true;
-        /*if(portalBlue!=null)
-        {*/
-            SetMaterial(portalBlue, new Color(41,2,181));
-        /*}
-        else
+        if(portalBlue!=null)
         {
-            doExist = false;
-        }*/
-
-        /*if (portalOrange != null)
-        {
-            SetMaterial(portalOrange, new Color(242, 120, 19));
+            //SetMaterial(portalBlue, new Color(41,2,181));
         }
         else
-        {*/
+        {
             doExist = false;
-       // }
+        }
+
+        if (portalOrange != null)
+        {
+            //SetMaterial(portalOrange, new Color(242, 120, 19));
+        }
+        else
+        {
+            doExist = false;
+        }
 
         if(doExist)
         {
-           portalBlue.GetComponentInChildren<PortalCamera>().UpdateOtherPortal(portalOrange.transform);
-           portalOrange.GetComponentInChildren<PortalCamera>().UpdateOtherPortal(portalBlue.transform);
+            portalBlue.GetComponentInChildren<PortalCamera>().UpdateOtherPortal(portalOrange.transform);
+            portalOrange.GetComponentInChildren<PortalCamera>().UpdateOtherPortal(portalBlue.transform);
         }
        
     }

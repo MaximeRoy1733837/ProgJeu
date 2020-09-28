@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
-
-    public float damage = 10f;
+    public GameObject portailBleuPrefab;
+    public GameObject portailOrangePrefab;
     public float range = 100f;
     public Camera cam;
     void Update()
@@ -25,8 +25,20 @@ public class Shoot : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
-            Debug.Log(hit.transform.name);
-        }
 
+            if (hit.transform.name == "mur 1" || hit.transform.name == "mur 2" || hit.transform.name == "mur 3" || hit.transform.name == "mur 4")
+            {
+                if (color == 1)
+                {
+                    GameObject bluePortal = Instantiate(portailBleuPrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                    //Destroy(bluePortal);
+                }
+                else if (color == 2)
+                {
+                    GameObject orangePortal = Instantiate(portailOrangePrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                    //Destroy(orangePortal);
+                }
+            }      
+        }
     }
 }

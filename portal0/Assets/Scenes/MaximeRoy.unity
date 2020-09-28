@@ -730,7 +730,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc212c24ebee93c41b589b21831d05e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  portailBleuPrefab: {fileID: 5774943926951416171, guid: 93296e769103af1418e556cd3eb1e523,
+    type: 3}
+  portailOrangePrefab: {fileID: 5774943926951416171, guid: 373a7a92f171fa542a063be2279161bb,
+    type: 3}
   range: 100
   cam: {fileID: 936051380}
 --- !u!1 &1232602608

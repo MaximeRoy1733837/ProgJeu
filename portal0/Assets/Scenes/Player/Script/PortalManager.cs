@@ -58,35 +58,40 @@ public class PortalManager : MonoBehaviour
     void SetMaterial(GameObject portal, PortalCamera aCamera,Color aColor)
     {
         portal.GetComponentInChildren<PortalCenter>().GetComponent<Renderer>().material = aCamera.GetMaterial();
-        //portal.GetComponentInChildren<PortalContour>().GetComponent<Renderer>().material.SetColor("_Color",new Color(100,0,255)); 
-        //portal.GetComponentInChildren<PortalContour>().GetComponent<Renderer>().material.color = new Color(aColor.r,aColor.g,aColor.b);
+        //portal.GetComponentInChildren<PortalContour>().GetComponent<Renderer>().material.SetColor("_Color",new Color(aColor.r, aColor.g, aColor.b)); 
+        portal.GetComponentInChildren<PortalContour>().SetColor(aColor);
     }
 
     void SetMaterial(GameObject portal,Color color)
     {
-        portal.GetComponentInChildren<PortalCenter>().GetComponent<Renderer>().material.color = color;
+        //portal.GetComponentInChildren<PortalCenter>().GetComponent<Renderer>().material.color = color;
+        Renderer portalRender = portal.GetComponentInChildren<PortalCenter>().GetComponent<Renderer>();
+        //portalRender.material = new Material(Shader.Find("Standard"));
+        //portalRender.material.mainTexture = new
+        portalRender.material.mainTexture = new RenderTexture(10, 10, 24);
+        portalRender.material.color = Color.red;
     }
 
     void ReSyncPortals() 
     {
         Boolean doExist = true;
-        if(portalBlue!=null)
-        {
-            //SetMaterial(portalBlue, new Color(41,2,181));
-        }
+        /*if(portalBlue!=null)
+        {*/
+            SetMaterial(portalBlue, new Color(41,2,181));
+        /*}
         else
         {
             doExist = false;
-        }
+        }*/
 
-        if (portalOrange != null)
+        /*if (portalOrange != null)
         {
-            //SetMaterial(portalOrange, new Color(242, 120, 19));
+            SetMaterial(portalOrange, new Color(242, 120, 19));
         }
         else
-        {
+        {*/
             doExist = false;
-        }
+       // }
 
         if(doExist)
         {

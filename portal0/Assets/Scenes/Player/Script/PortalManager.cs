@@ -20,7 +20,7 @@ public class PortalManager : MonoBehaviour
     }
 
     // Update is called once per frame
-   /* void Update()
+    void Update()
     {
         portalCooldownLeft -= Time.deltaTime;
         if(portalCooldownLeft<=0)
@@ -58,8 +58,8 @@ public class PortalManager : MonoBehaviour
     void SetMaterial(GameObject portal, PortalCamera aCamera,Color aColor)
     {
         portal.GetComponentInChildren<PortalCenter>().GetComponent<Renderer>().material = aCamera.GetMaterial();
-        //portal.GetComponentInChildren<PortalContour>().SetColor(aColor);
-        //portal.GetComponentInChildren<PortalContour>().GetComponent<Renderer>().material.color = aColor;
+        //portal.GetComponentInChildren<PortalContour>().GetComponent<Renderer>().material.SetColor("_Color",new Color(100,0,255)); 
+        //portal.GetComponentInChildren<PortalContour>().GetComponent<Renderer>().material.color = new Color(aColor.r,aColor.g,aColor.b);
     }
 
     void SetMaterial(GameObject portal,Color color)
@@ -94,5 +94,5 @@ public class PortalManager : MonoBehaviour
            portalOrange.GetComponentInChildren<PortalCamera>().UpdateOtherPortal(portalBlue.transform);
         }
        
-    }*/
+    }
 }

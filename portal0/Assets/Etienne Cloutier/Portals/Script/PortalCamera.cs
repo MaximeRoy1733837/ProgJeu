@@ -9,7 +9,7 @@ public class PortalCamera : MonoBehaviour
 {
     private Camera myCamera;
 
-    public Transform playerCamera;
+    private Transform playerCamera;
     public Transform portal;
     public Transform otherPortal;
 
@@ -18,13 +18,11 @@ public class PortalCamera : MonoBehaviour
     void Awake()
     {
         myCamera = GetComponent<Camera>();
-        //ResetTexture();
-        /*otherPortal.rotation = new Quaternion();
-        otherPortal.position = new Vector3(0, 0, 0);*/
+        ResetTexture();
     }
     void Start()
     {
-        //playerCamera = FindObjectOfType<CharacterController>().transform;
+        playerCamera = FindObjectOfType<CharacterController>().transform;
 
     }
     void Update()
@@ -41,18 +39,11 @@ public class PortalCamera : MonoBehaviour
 
 
         //portal cam rotation
-        float angularDifferenceBetweenPortalRotation = Quaternion.Angle(otherPortal.rotation, portal.rotation);
-        Quaternion portalRotationalDifference = Quaternion.AngleAxis(angularDifferenceBetweenPortalRotation, Vector3.up);
-        Vector3 newCameraDirection = (portalRotationalDifference * (new Vector3(-playerCamera.forward.x,playerCamera.forward.y,-playerCamera.forward.z)));
-        //transform.rotation = portalRotationalDifference * playerCamera.rotation;
-        //transform.rotation = Quaternion.LookRotation(newCameraDirection, Vector3.up);
-
         Quaternion reverse = new Quaternion(0,1,0,0);
-        //transform.rotation = (playerCamera.rotation * Quaternion.Inverse(portal.rotation)*reverse)*otherPortal.rotation ;
         transform.rotation = otherPortal.rotation * reverse*Quaternion.Inverse(portal.rotation)*playerCamera.rotation   ;
     }
 
-   /* public void ResetTexture()
+    public void ResetTexture()
     {
         cameraMaterial = new Material(Shader.Find("Standard"));
 
@@ -70,6 +61,6 @@ public class PortalCamera : MonoBehaviour
     public Material GetMaterial()
     {
         return cameraMaterial;
-    }*/
+    }
 
 }

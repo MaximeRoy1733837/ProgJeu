@@ -45,11 +45,12 @@ public class PortalCamera : MonoBehaviour
 
     public void ResetTexture()
     {
-        cameraMaterial = new Material(Shader.Find("Standard"));
-
         renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
-
         myCamera.targetTexture = renderTexture;
+        
+        cameraMaterial = new Material(Shader.Find("Unlit/PortalShader"));
+        cameraMaterial.SetTexture("_MainTex", renderTexture);
+
         cameraMaterial.mainTexture = renderTexture;
     }
 

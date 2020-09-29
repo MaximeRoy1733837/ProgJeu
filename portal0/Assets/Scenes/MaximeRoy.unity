@@ -427,7 +427,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 936051377}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.034, y: 1.52, z: 0}
+  m_LocalPosition: {x: -0.034, y: 1.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1186159395}
@@ -467,7 +467,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 31.8
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -695,6 +695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1186159395}
+  - component: {fileID: 1186159396}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -710,13 +711,31 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1186159394}
   m_LocalRotation: {x: 0.004243425, y: -0.7067462, z: 0.0042476, w: 0.70744175}
-  m_LocalPosition: {x: 0.41, y: -0.31, z: 0.82}
+  m_LocalPosition: {x: 0.41, y: -0.2, z: 0.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 620249261}
   m_Father: {fileID: 936051378}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0.688, y: -89.94401, z: 0.001}
+--- !u!114 &1186159396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186159394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc212c24ebee93c41b589b21831d05e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portailBleuPrefab: {fileID: 5774943926951416171, guid: 93296e769103af1418e556cd3eb1e523,
+    type: 3}
+  portailOrangePrefab: {fileID: 5774943926951416171, guid: 373a7a92f171fa542a063be2279161bb,
+    type: 3}
+  range: 100
+  cam: {fileID: 936051380}
 --- !u!1 &1232602608
 GameObject:
   m_ObjectHideFlags: 0

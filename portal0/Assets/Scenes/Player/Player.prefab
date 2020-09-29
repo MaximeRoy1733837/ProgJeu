@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 6627247984310788266}
   - component: {fileID: 6627247984310788267}
   - component: {fileID: 7275568488768029378}
+  - component: {fileID: -4098283163560127898}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -239,5 +240,19 @@ MonoBehaviour:
   PortalPrefab: {fileID: 323527688066456085, guid: a044087ae589ebb4d875b00685d47683,
     type: 3}
   portalCooldown: 1
-  BlueMatPrefab: {fileID: 2100000, guid: 1f65a328307e6314db1fa2ee8a0cf530, type: 2}
-  OrangeMatPrefab: {fileID: 2100000, guid: 030cbbd03f660f24ab78ffcb6f4df642, type: 2}
+--- !u!114 &-4098283163560127898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6627247984310788241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc212c24ebee93c41b589b21831d05e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portailBleuPrefab: {fileID: 0}
+  portailOrangePrefab: {fileID: 0}
+  range: 100
+  cam: {fileID: 0}

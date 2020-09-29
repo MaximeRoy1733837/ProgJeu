@@ -7,53 +7,61 @@ using UnityEngine;
 public class PortalManager : MonoBehaviour
 {
     public GameObject PortalPrefab;
-    public int portalCooldown = 1;
 
-    private GameObject portalBlue;
-    private GameObject portalOrange;
+    private GameObject[] portals =new GameObject[2];
+    private Color[] colorPortail = new Color[2];
 
-    private float portalCooldownLeft = 0; 
     // Start is called before the first frame update
     void Start()
     {
-        portalBlue = null;
-        portalOrange = null;
+        portals[0] = null;
+        portals[1] = null;
+        colorPortail[0] = new Color(41f / 255, 2f / 255, 181f / 255);
+        colorPortail[1] = new Color(242f / 255, 120f / 255, 19f / 255);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        portalCooldownLeft -= Time.deltaTime;
+        /*portalCooldownLeft -= Time.deltaTime;
         if(portalCooldownLeft<=0)
         {
             if (Input.GetAxis("Fire1") != 0)
             {
-                portalBlue = CreatePortal(portalBlue,new Color(41f / 255, 2f / 255, 181f / 255));
+                //portalBlue = CreatePortal(portalBlue,new Color(41f / 255, 2f / 255, 181f / 255));
+                portals[0] = CreatePortal(0,new Color(41f / 255, 2f / 255, 181f / 255));
                 portalCooldownLeft = portalCooldown;
                 ReSyncPortals();
             }
             else if (Input.GetAxis("Fire2") != 0)
             {
-                Destroy(portalOrange);
-                portalOrange = CreatePortal(portalOrange,new Color(242f / 255, 120f / 255, 19f/255));
+                //Destroy(portalOrange);
+                //portalOrange = CreatePortal(portalOrange,new Color(242f / 255, 120f / 255, 19f/255));
+                portals[1] = CreatePortal(1,new Color(242f / 255, 120f / 255, 19f/255));
                 portalCooldownLeft = portalCooldown;
                 ReSyncPortals();
             }
-        }
+        }*/
     }
 
-    GameObject CreatePortal(GameObject portal,Color aColor)
+    public void CreatePortal(int noPortal,Transform aTransform)
     {
-        if(portal !=null)
+        GameObject portal = null;
+        if(noPortal<portals.Length)
         {
-            Destroy(portal,0.01f);
-        }
-        PortalCamera aCamera;
+            portal = portals[noPortal];
+       
+            if(portal !=null)
+            {
+                Destroy(portal,0.01f);
+            }
+            PortalCamera aCamera;
 
-        portal = Instantiate(PortalPrefab, transform.position, transform.rotation);
-        aCamera = portal.GetComponentInChildren<PortalCamera>();
-        SetMaterial(portal,aCamera,aColor);
-        return portal;
+            portal = Instantiate(PortalPrefab, aTransform.position, aTransform.rotation);
+            aCamera = portal.GetComponentInChildren<PortalCamera>();
+            SetMaterial(portal,aCamera,colorPortail[noPortal]);
+            portals[noPortal] = portal;
+            ReSyncPortals();
+        }
     }
 
     void SetMaterial(GameObject portal, PortalCamera aCamera,Color aColor)
@@ -70,29 +78,29 @@ public class PortalManager : MonoBehaviour
     void ReSyncPortals() 
     {
         Boolean doExist = true;
-        if(portalBlue!=null)
+        for(int i=0;i<portals.Length;i++)
         {
-            //SetMaterial(portalBlue, new Color(41,2,181));
+            if(portals[i]!=null)
+            {
+                SetMaterial(portals[i], colorPortail[i]);
+            }
+            else
+            {
+                doExist = false;
+            }
         }
-        else
+        if(doExist && portals.Length>0)
         {
-            doExist = false;
+            portals[0].GetComponentInChildren<PortalCamera>().UpdateOtherPortal(portals[1].transform);
+            portals[1].GetComponentInChildren<PortalCamera>().UpdateOtherPortal(portals[0].transform);
         }
+    }
 
-        if (portalOrange != null)
+    public void ChangePortalColor(int noPortal,Color aColor)
+    {
+        if(noPortal < colorPortail.Length)
         {
-            //SetMaterial(portalOrange, new Color(242, 120, 19));
+            colorPortail[noPortal] = aColor;
         }
-        else
-        {
-            doExist = false;
-        }
-
-        if(doExist)
-        {
-            portalBlue.GetComponentInChildren<PortalCamera>().UpdateOtherPortal(portalOrange.transform);
-            portalOrange.GetComponentInChildren<PortalCamera>().UpdateOtherPortal(portalBlue.transform);
-        }
-       
     }
 }

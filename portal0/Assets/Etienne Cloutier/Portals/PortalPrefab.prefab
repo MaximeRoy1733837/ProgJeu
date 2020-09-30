@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3777850921759193239}
+  - component: {fileID: 9114516868330871190}
   m_Layer: 0
   m_Name: PortalPrefab
   m_TagString: Untagged
@@ -33,6 +34,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9114516868330871190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323527688066456085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c3ca0f01a1c9f4ca0b18bc7f9732aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2671263522504788755
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,9 +151,10 @@ GameObject:
   - component: {fileID: 5216758259269463616}
   - component: {fileID: 2509607003570713040}
   - component: {fileID: 7527607286773440424}
-  m_Layer: 0
+  - component: {fileID: 4090707314457003902}
+  m_Layer: 8
   m_Name: Centre
-  m_TagString: Untagged
+  m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218,6 +232,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511707e638bb886458d146870f54eb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &4090707314457003902
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3630517563871886017}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &7264286683341862330
 GameObject:
   m_ObjectHideFlags: 0
@@ -1542,16 +1570,16 @@ ParticleSystem:
         key0: {r: 1, g: 0.28719693, b: 0, a: 1}
         key1: {r: 0.08627449, g: 0.85882354, b: 0.14551313, a: 0.9137255}
         key2: {r: 0.055031504, g: 0, b: 0.9433962, a: 0}
-        key3: {r: 1, g: 1, b: 1, a: 0}
-        key4: {r: 0, g: 0, b: 0, a: 0}
+        key3: {r: 1, g: 0.11576611, b: 0, a: 0}
+        key4: {r: 1, g: 1, b: 1, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
         ctime1: 20046
         ctime2: 39128
-        ctime3: 65535
-        ctime4: 0
+        ctime3: 52428
+        ctime4: 65535
         ctime5: 0
         ctime6: 0
         ctime7: 0
@@ -1564,7 +1592,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_NumColorKeys: 4
+        m_NumColorKeys: 5
         m_NumAlphaKeys: 3
       minGradient:
         serializedVersion: 2

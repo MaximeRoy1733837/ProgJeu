@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PortalManager : MonoBehaviour
 {
@@ -22,25 +23,6 @@ public class PortalManager : MonoBehaviour
 
     void Update()
     {
-        /*portalCooldownLeft -= Time.deltaTime;
-        if(portalCooldownLeft<=0)
-        {
-            if (Input.GetAxis("Fire1") != 0)
-            {
-                //portalBlue = CreatePortal(portalBlue,new Color(41f / 255, 2f / 255, 181f / 255));
-                portals[0] = CreatePortal(0,new Color(41f / 255, 2f / 255, 181f / 255));
-                portalCooldownLeft = portalCooldown;
-                ReSyncPortals();
-            }
-            else if (Input.GetAxis("Fire2") != 0)
-            {
-                //Destroy(portalOrange);
-                //portalOrange = CreatePortal(portalOrange,new Color(242f / 255, 120f / 255, 19f/255));
-                portals[1] = CreatePortal(1,new Color(242f / 255, 120f / 255, 19f/255));
-                portalCooldownLeft = portalCooldown;
-                ReSyncPortals();
-            }
-        }*/
     }
 
     public void CreatePortal(int noPortal,Transform aTransform)
@@ -61,6 +43,7 @@ public class PortalManager : MonoBehaviour
             SetMaterial(portal,aCamera,colorPortail[noPortal]);
             portals[noPortal] = portal;
             ReSyncPortals();
+            portal.GetComponentInChildren<SelfPortal>().SetPortalManager(this);
         }
     }
 
@@ -102,5 +85,47 @@ public class PortalManager : MonoBehaviour
         {
             colorPortail[noPortal] = aColor;
         }
+    }
+
+    public Transform GetTpTransform(Transform pos,Transform output)
+    {
+        float maxDistance =-1;
+        int index = -1;
+
+        for(int i=0;i<portals.Length;i++)
+        {
+            if(portals[i]!=null){
+                float newDistance = Vector3.Distance(portals[i].transform.position, pos.position);
+                print(newDistance);
+                if(newDistance>maxDistance)
+                {
+                    maxDistance = newDistance;
+                    index = i;
+                }
+            }
+        }
+        if(index!=-1)
+        {   
+            Transform portal = portals[Math.Abs(index - 1)].transform;
+            Transform otherPortal = portals[index].transform;
+            TransformTP(pos, portal, otherPortal, output);
+        }
+        return output;
+    }
+
+    private Transform TransformTP(Transform pos,Transform portal,Transform otherPortal,Transform output)
+    {
+        Vector3 playerOffsetFromPortal = (pos.position - portal.position);
+        //in prtal frame Px Py Pz (C.C.)
+        float px = Vector3.Dot(playerOffsetFromPortal, portal.right);
+        float py = Vector3.Dot(playerOffsetFromPortal, portal.up);
+        float pz = Vector3.Dot(playerOffsetFromPortal, portal.forward);
+
+        Vector3 playerOffsetFromOtherPortal = otherPortal.up * py + otherPortal.right * px + otherPortal.forward * pz;
+        output.position = otherPortal.position + playerOffsetFromOtherPortal;
+
+        Quaternion reverse = new Quaternion(0, 1, 0, 0);
+        output.rotation = otherPortal.rotation *reverse* Quaternion.Inverse(portal.rotation) * pos.rotation;
+        return output;
     }
 }

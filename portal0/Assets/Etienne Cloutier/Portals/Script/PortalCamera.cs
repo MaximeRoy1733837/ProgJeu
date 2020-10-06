@@ -23,7 +23,6 @@ public class PortalCamera : MonoBehaviour
     void Start()
     {
         playerCamera = FindObjectOfType<CharacterController>().transform;
-
     }
     void Update()
     {   

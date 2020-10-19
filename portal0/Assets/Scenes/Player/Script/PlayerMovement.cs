@@ -15,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
     private float characterSpeed = 6f;
     private float characterJumpSpeed = 8f;
     private float gravityForce = 20f;
-    private float TPCooldown = 0f;
 
     void Start()
     {
@@ -26,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TPCooldown -= Time.deltaTime;
         if (characterController.isGrounded)
         {
             characterMoveDirection = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
@@ -41,22 +39,5 @@ public class PlayerMovement : MonoBehaviour
         characterMoveDirection.y -= gravityForce * Time.deltaTime;
         characterController.Move(characterMoveDirection * Time.deltaTime);
     }
-    void OnTriggerEnter(Collider collider)
-    {  
-        if(collider.tag=="Portal"&&TPCooldown<=0)
-        {
-            TPCooldown = 0.05f;
-            SelfPortal portal = collider.GetComponentInParent<SelfPortal>();
-            if(portal!=null)
-            {
-                PortalManager portalManager = portal.getPortalManager();
-                if(portalManager!=null)
-                {
-                    characterController.enabled = false;
-                    portalManager.GetTpTransform(transform,transform);
-                    characterController.enabled = true;
-                }
-            }
-        }
-    }
+
 }

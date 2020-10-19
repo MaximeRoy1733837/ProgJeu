@@ -21,10 +21,6 @@ public class PortalManager : MonoBehaviour
         colorPortail[1] = new Color(242f / 255, 120f / 255, 19f / 255);
     }
 
-    void Update()
-    {
-    }
-
     public void CreatePortal(int noPortal,Transform aTransform)
     {
         GameObject portal = null;
@@ -96,7 +92,6 @@ public class PortalManager : MonoBehaviour
         {
             if(portals[i]!=null){
                 float newDistance = Vector3.Distance(portals[i].transform.position, pos.position);
-                print(newDistance);
                 if(newDistance>maxDistance)
                 {
                     maxDistance = newDistance;
@@ -106,9 +101,12 @@ public class PortalManager : MonoBehaviour
         }
         if(index!=-1)
         {   
-            Transform portal = portals[Math.Abs(index - 1)].transform;
-            Transform otherPortal = portals[index].transform;
-            TransformTP(pos, portal, otherPortal, output);
+            if(portals[Math.Abs(index - 1)]!=null)
+            {
+                Transform portal = portals[Math.Abs(index - 1)].transform;
+                Transform otherPortal = portals[index].transform;
+                TransformTP(pos, portal, otherPortal, output);   
+            }
         }
         return output;
     }

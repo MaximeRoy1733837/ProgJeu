@@ -32,6 +32,6 @@ public class PlayerCamera : MonoBehaviour
         cameraPitch = Mathf.Clamp(cameraPitch, -90f, 90f);
 
         transform.eulerAngles = new Vector3(cameraPitch, cameraYaw, 0f);
-        characterController.transform.eulerAngles = transform.eulerAngles;
+        characterController.transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,0);
     }
 }

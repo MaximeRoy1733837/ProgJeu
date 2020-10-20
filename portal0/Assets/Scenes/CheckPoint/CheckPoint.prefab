@@ -109,3 +109,4 @@ MonoBehaviour:
   renderer: {fileID: 8702852345695813959}
   checkPointOff: {fileID: 2100000, guid: d988430136e35d84ea679ed1d3045ea4, type: 2}
   checkPointOn: {fileID: 2100000, guid: 8592f67cf892ccd4091539eed38672e7, type: 2}
+  audioClip: {fileID: 8300000, guid: 5e8a2bb93fe11a641a2fd1a36140ecd6, type: 3}

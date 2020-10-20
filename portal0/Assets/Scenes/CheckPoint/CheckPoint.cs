@@ -9,6 +9,9 @@ public class CheckPoint : MonoBehaviour
     public Material checkPointOff;
     public Material checkPointOn;
 
+    public AudioClip audioClip;
+    AudioSource audioSource;
+
     void Start()
     {
         
@@ -35,9 +38,11 @@ public class CheckPoint : MonoBehaviour
     {
         if(other.tag.Equals("Player"))
         {
+            //couleur
             CheckPointOn();
 
             //son
+            audioSource.PlayOneShot(audioClip, 0.7F);
 
             //element au meme endroit
 

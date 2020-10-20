@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Portable
   - Portal
+  - CheckPoint
   layers:
   - Default
   - TransparentFX

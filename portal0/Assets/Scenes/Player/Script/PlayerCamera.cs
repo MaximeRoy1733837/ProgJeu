@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviour
 {
     private CharacterController characterController;
+    private GameObject cameraOverlayBlood;
     private float cameraHorizontalSpeed = 2f;
     private float cameraVerticalSpeed = 2;
     private float cameraYaw = 0f;
@@ -14,6 +15,7 @@ public class PlayerCamera : MonoBehaviour
     void Start()
     {
         characterController = GameObject.Find("Player").GetComponent<CharacterController>();
+        cameraOverlayBlood = GameObject.Find("OverlayCamera");
         Cursor.lockState = CursorLockMode.Locked;
     }
 

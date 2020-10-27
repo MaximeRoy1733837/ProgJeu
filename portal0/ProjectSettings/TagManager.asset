@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Portable
   - Portal
+  - Trap_pikes_small
+  - Trap_fire_small
   layers:
   - Default
   - TransparentFX

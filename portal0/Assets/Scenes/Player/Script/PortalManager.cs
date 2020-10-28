@@ -83,47 +83,93 @@ public class PortalManager : MonoBehaviour
         }
     }
 
-    public Transform GetTpTransform(Transform pos,Transform output)
+    private int FindPortals(Vector3 position)
     {
-        float maxDistance =-1;
+        float maxDistance = -1;
         int index = -1;
 
-        for(int i=0;i<portals.Length;i++)
+        for (int i = 0; i < portals.Length; i++)
         {
-            if(portals[i]!=null){
-                float newDistance = Vector3.Distance(portals[i].transform.position, pos.position);
-                if(newDistance>maxDistance)
+            if (portals[i] != null)
+            {
+                float newDistance = Vector3.Distance(portals[i].transform.position, position);
+                if (newDistance > maxDistance)
                 {
                     maxDistance = newDistance;
                     index = i;
                 }
             }
         }
-        if(index!=-1)
-        {   
-            if(portals[Math.Abs(index - 1)]!=null)
-            {
-                Transform portal = portals[Math.Abs(index - 1)].transform;
-                Transform otherPortal = portals[index].transform;
-                TransformTP(pos, portal, otherPortal, output);   
-            }
+        if (index != -1)
+        {
+            index = Mathf.Abs(index - 1);
         }
-        return output;
+        return index;
     }
 
-    private Transform TransformTP(Transform pos,Transform portal,Transform otherPortal,Transform output)
+    private Vector3 ChangePositionOffset(Vector3 position,Transform portal,Transform otherPortal)
     {
-        Vector3 playerOffsetFromPortal = (pos.position - portal.position);
+        Vector3 playerOffsetFromPortal = ( position - portal.position);
         //in prtal frame Px Py Pz (C.C.)
         float px = Vector3.Dot(playerOffsetFromPortal, portal.right);
         float py = Vector3.Dot(playerOffsetFromPortal, portal.up);
         float pz = Vector3.Dot(playerOffsetFromPortal, portal.forward);
 
-        Vector3 playerOffsetFromOtherPortal = otherPortal.up * py + otherPortal.right * px + otherPortal.forward * pz;
-        output.position = otherPortal.position + playerOffsetFromOtherPortal;
+        Vector3 itemOffsetFromOtherPortal = otherPortal.up * py + otherPortal.right * px + otherPortal.forward * pz;
+        position = otherPortal.position + itemOffsetFromOtherPortal;
+        return position;
+    }
 
+    private Quaternion ChangeRotationOffset(Quaternion rotation,Transform portal,Transform otherPortal)
+    {
         Quaternion reverse = new Quaternion(0, 1, 0, 0);
-        output.rotation = otherPortal.rotation *reverse* Quaternion.Inverse(portal.rotation) * pos.rotation;
-        return output;
+        rotation = otherPortal.rotation * reverse * Quaternion.Inverse(portal.rotation) * rotation;
+        return rotation;
+    }
+
+    public Vector3 GetOffsetPosition(Vector3 pos)
+    {
+        Vector3 position = pos;
+        int index = FindPortals(pos);
+        if(index!=-1)
+        {
+            if (portals[Math.Abs(index - 1)] != null && portals[index]!=null)
+            {
+                Transform portal = portals[index].transform;
+                Transform otherPortal = portals[Math.Abs(index - 1)].transform;
+                position = ChangePositionOffset(position, portal, otherPortal);
+            }
+        }
+        return position;
+    }  
+    public Quaternion GetOffsetRotation(Quaternion rot,Vector3 pos)
+    {
+        Quaternion rotation = rot;
+        int index = FindPortals(pos);
+        if (index != -1)
+        {
+            if (portals[Math.Abs(index - 1)] != null && portals[index] != null)
+            {
+                Transform portal = portals[index].transform;
+                Transform otherPortal = portals[Math.Abs(index - 1)].transform;
+                rotation =  ChangeRotationOffset(rotation, portal, otherPortal);
+            }
+        }
+        return rotation;
+    }    
+    public Rigidbody GetOffsetVelocity(Rigidbody item)
+    {
+        Rigidbody game = Instantiate(item);
+        int index = FindPortals(game.transform.position);
+        if (index != -1)
+        {
+            if (portals[Math.Abs(index - 1)] != null && portals[index] != null)
+            {
+                Transform portal = portals[index].transform;
+                Transform otherPortal = portals[Math.Abs(index - 1)].transform;
+                ChangePositionOffset(game.transform.position, portal, otherPortal);
+            }
+        }
+        return game;
     }
 }

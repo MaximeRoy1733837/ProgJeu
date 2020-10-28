@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class Traveler : MonoBehaviour
 {
+    private Rigidbody body;
+
     private float TPCooldown = 0f;
+
+    private void Start()
+    {
+        body = gameObject.GetComponent<Rigidbody>();
+    }
 
     void Update()
     {
@@ -22,17 +29,21 @@ public class Traveler : MonoBehaviour
                 PortalManager portalManager = portal.getPortalManager();
                 if (portalManager != null)
                 {
-                    //pas de character controller pour les obj
-                    CharacterController characterController= gameObject.GetComponentInParent<CharacterController>();
-                    if(characterController!=null)
-                    {
-                        characterController.enabled = false;
-                    }
-                    portalManager.GetTpTransform(transform, transform);
-                    if (characterController != null)
-                    {
-                        characterController.enabled = true;
-                    }
+                    PlayerCamera playerCamera = gameObject.GetComponentInChildren<PlayerCamera>();
+                    playerCamera.RestRotation();
+
+                    //create new obj
+                    Vector3 originPos = transform.position;//new Vector3(transform.position.x,transform.position.y,transform.position.z);
+                    Quaternion originRot = transform.rotation;
+
+                    //change rotation
+                    transform.rotation = portalManager.GetOffsetRotation(originRot,originPos);
+                    //change position
+                    transform.position = portalManager.GetOffsetPosition(originPos);
+
+
+                    playerCamera.RestRotation();
+
                 }
             }
         }

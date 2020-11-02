@@ -40,6 +40,7 @@ public class Traveler : MonoBehaviour
                     //create new obj
                     Vector3 originPos = transform.position;//new Vector3(transform.position.x,transform.position.y,transform.position.z);
                     Quaternion originRot = transform.rotation;
+                    Vector3 origineVelocity = body.velocity;
 
                     //change rotation
                     /***********BUG**********
@@ -49,10 +50,10 @@ public class Traveler : MonoBehaviour
                     Étienne Cloutier 02 Novembre 2020
                     ************BUG END*********/
 
-                    //transform.rotation = portalManager.GetOffsetRotation(originRot,originPos);
+                    transform.rotation = portalManager.GetOffsetRotation(originRot,originPos);
                     //change position
                     transform.position = portalManager.GetOffsetPosition(originPos);
-
+                    body.velocity = portalManager.GetOffsetRotation(Quaternion.Euler(origineVelocity), originPos)*origineVelocity;
                     /*if (playerCamera != null)
                     {
                         playerCamera.RestRotation();

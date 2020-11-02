@@ -33,24 +33,20 @@ public class PlayerCamera : MonoBehaviour
 
     void ChangeCameraDirection()
     {
-        if (f)
-        {
-            cameraH += cameraHorizontalSpeed * Input.GetAxis("Mouse X");
-            cameraV -= cameraVerticalSpeed * Input.GetAxis("Mouse Y");
-        
+        cameraH += cameraHorizontalSpeed * Input.GetAxis("Mouse X");
+        cameraV -= cameraVerticalSpeed * Input.GetAxis("Mouse Y");
         // Fait en sorte que la camera peut seulement regarder 90 degree en l'air et vers le bas
         cameraV = Mathf.Clamp(cameraV, -90f, 90f);
-}
         cam.MoveRotation(Quaternion.Euler(new Vector3(cameraV, cameraH, 0f)));
-        body.MoveRotation(Quaternion.Euler(new Vector3(0,cameraH,0)));
+        body.MoveRotation(Quaternion.Euler(new Vector3(0, cameraH, 0)));
     }
 
-    public void RestRotation()
+    /*public void RestRotation()
     {
-        f = false;
+       // f = false;
         cameraH = transform.rotation.eulerAngles.x;
         cameraV = transform.rotation.eulerAngles.y;
         //cam.MoveRotation(Quaternion.Euler(new Vector3(cameraV, cameraH, 0f)));
 
-    }
+    }*/
 }

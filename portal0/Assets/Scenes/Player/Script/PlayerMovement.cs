@@ -40,11 +40,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(forward))
+        if (Input.GetKey(forward))
         {
             Vector3 walkVelocity = new Vector3(transform.forward.x, 0.1f, transform.forward.z);
-            body.AddForce(walkVelocity*walkSpeed, ForceMode.Acceleration);
-        } 
+            body.AddForce(walkVelocity * walkSpeed, ForceMode.Acceleration);
+        }
         if(Input.GetKey(backward))
         {
             Vector3 walkVelocity = new Vector3( -transform.forward.x, 0.1f, -transform.forward.z);

@@ -10,17 +10,23 @@ public class Grabbable : MonoBehaviour
 
     private float drag;
     private Rigidbody myRigidbody;
+    private float weight;
+    private CollisionDetectionMode collisionMode;
+    public float Weight { get { return weight; } }
 
     private void Start()
     {
         myRigidbody = GetComponent<Rigidbody>();
         drag = myRigidbody.drag;
+        weight = myRigidbody.mass;
+        collisionMode = myRigidbody.collisionDetectionMode;
     }
     void Update()
     {
         if(grabber!=null)
         {
             Move();
+            Rotate();
         }
     }
 
@@ -28,6 +34,7 @@ public class Grabbable : MonoBehaviour
     {
         grabber = aGrabber;
         myRigidbody.drag = 20;
+        myRigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
         force =20/ myRigidbody.mass;
         if(force>20)
         {
@@ -39,21 +46,31 @@ public class Grabbable : MonoBehaviour
     {
         grabber = null;
         myRigidbody.drag = drag;
+        myRigidbody.collisionDetectionMode = collisionMode;
     }  
     public void ForceRelease()
     {
         if (grabber != null)
         {
             grabber.ForceRelease();
-            grabber = null;
         }
-        myRigidbody.drag = drag;
+        Release();
     }
 
     private void Move()
     {
         Vector3 vector3 = myRigidbody.position - grabber.GetDestination();
-        myRigidbody.AddForce(-vector3*force,ForceMode.VelocityChange);
+        float aForce = force / weight;
+        if(aForce>force)
+        {
+            aForce = force;
+        }
+        myRigidbody.AddForce(-vector3*aForce,ForceMode.VelocityChange);
+    }
+
+    private void Rotate()
+    {
+        myRigidbody.rotation=Quaternion.RotateTowards(myRigidbody.rotation,grabber.transform.rotation,5);
     }
 
     public void Trow(Vector3 direction)

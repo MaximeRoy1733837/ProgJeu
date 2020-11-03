@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Grab : MonoBehaviour
 {
-    public float trowForce = 50f;
+    public float trowForce = 100f;
     public Camera cam;
 
     private GrabDestination grabDestination;
@@ -61,6 +61,7 @@ public class Grab : MonoBehaviour
             Grabbable item = hit.transform.GetComponent<Grabbable>();
             if (item != null)
             {
+                item.ForceRelease();
                 grabbedItem = item;
                 grabbedItem.Grab(this);
             }
@@ -97,7 +98,12 @@ public class Grab : MonoBehaviour
     private void Trow()
     {
         grabbedItem.Release();
-        Vector3 direction = cam.transform.forward*trowForce;
+        float force = trowForce / grabbedItem.Weight;
+        if(force>trowForce)
+        {
+            force = trowForce;
+        }
+        Vector3 direction = cam.transform.forward*force;
         grabbedItem.Trow(direction);
         Release();
     }

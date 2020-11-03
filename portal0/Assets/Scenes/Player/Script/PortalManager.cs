@@ -111,8 +111,8 @@ public class PortalManager : MonoBehaviour
     {
         Vector3 playerOffsetFromPortal = ( position - portal.position);
         //in prtal frame Px Py Pz (C.C.)
-        float px = Vector3.Dot(playerOffsetFromPortal, portal.right);
-        float py = Vector3.Dot(playerOffsetFromPortal, portal.up);
+        float px = Vector3.Dot(playerOffsetFromPortal, -portal.right);
+        float py = Vector3.Dot(playerOffsetFromPortal, -portal.up);
         float pz = Vector3.Dot(playerOffsetFromPortal, portal.forward);
 
         Vector3 itemOffsetFromOtherPortal = otherPortal.up * py + otherPortal.right * px + otherPortal.forward * pz;

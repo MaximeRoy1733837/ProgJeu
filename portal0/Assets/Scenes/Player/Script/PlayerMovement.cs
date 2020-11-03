@@ -14,8 +14,8 @@ public class PlayerMovement : MonoBehaviour
     private PlayerCamera playerCamera;
 
 
-    private float walkSpeed = 10f;
-    private float jumpHeight = 5f;
+    private float walkSpeed = 100f;
+    private float jumpHeight = 500f;
     private float minSpeed = 100f;
 
     private int numberOfJumps = 20;

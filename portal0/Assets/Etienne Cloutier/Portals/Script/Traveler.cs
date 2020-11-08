@@ -52,6 +52,10 @@ public class Traveler : MonoBehaviour
                     //transform.rotation = portalManager.GetOffsetRotation(originRot,originPos);
                     //change position
                     transform.position = portalManager.GetOffsetPosition(originPos);
+                    transform.rotation = portalManager.GetOffsetRotation(originRot, originPos);
+                    GetComponentInChildren<PlayerCamera>().setCameraRotation();
+                    //cam.MoveRotation(Quaternion.Euler(new Vector3(portalManager.GetOffsetRotation(originRot, originPos).x, portalManager.GetOffsetRotation(originRot, originPos).y, portalManager.GetOffsetRotation(originRot, originPos).z)));
+
 
                     /*if (playerCamera != null)
                     {

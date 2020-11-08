@@ -157,19 +157,25 @@ public class PortalManager : MonoBehaviour
         }
         return rotation;
     }    
-    public Rigidbody GetOffsetVelocity(Rigidbody item)
+    public Vector3 GetOffsetVelocity(Vector3 item,Vector3 pos)
     {
-        Rigidbody game = Instantiate(item);
-        int index = FindPortals(game.transform.position);
+        print("I"+item);
+        Vector3 velocity = item;
+        int index = FindPortals(pos);
         if (index != -1)
         {
             if (portals[Math.Abs(index - 1)] != null && portals[index] != null)
             {
                 Transform portal = portals[index].transform;
                 Transform otherPortal = portals[Math.Abs(index - 1)].transform;
-                ChangePositionOffset(game.transform.position, portal, otherPortal);
+
+                Quaternion q= Quaternion.FromToRotation(portal.position, otherPortal.position);
+                print("Q " + q.eulerAngles);
+                Vector3 vector3 = q * velocity;
+                velocity = vector3;
             }
         }
-        return game;
+        print("v"+velocity);
+        return velocity;
     }
 }

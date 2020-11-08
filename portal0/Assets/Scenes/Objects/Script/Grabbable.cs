@@ -41,13 +41,13 @@ public class Grabbable : MonoBehaviour
             force = 20;
         }
     }
-
     public void Release()
     {
         grabber = null;
         myRigidbody.drag = drag;
         myRigidbody.collisionDetectionMode = collisionMode;
     }  
+    //use when a thirdparty want to release the item
     public void ForceRelease()
     {
         if (grabber != null)

@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 public class PortalManager : MonoBehaviour
 {
     public GameObject PortalPrefab;
+    public AudioClip teleportSound;
 
     private GameObject[] portals =new GameObject[2];
     private Color[] colorPortail = new Color[2];
@@ -21,6 +22,7 @@ public class PortalManager : MonoBehaviour
         colorPortail[1] = new Color(242f / 255, 120f / 255, 19f / 255);
     }
 
+    #region portals gestion
     public void CreatePortal(int noPortal,Transform aTransform)
     {
         GameObject portal = null;
@@ -42,18 +44,7 @@ public class PortalManager : MonoBehaviour
             portal.GetComponentInChildren<SelfPortal>().SetPortalManager(this);
         }
     }
-
-    void SetMaterial(GameObject portal, PortalCamera aCamera,Color aColor)
-    {
-        portal.GetComponentInChildren<PortalCenter>().GetComponent<Renderer>().material = aCamera.GetMaterial();
-        portal.GetComponentInChildren<PortalContour>().GetComponent<Renderer>().material.color= aColor; 
-    }
-
-    void SetMaterial(GameObject portal,Color color)
-    {
-        Renderer portalRender = portal.GetComponentInChildren<PortalCenter>().GetComponent<Renderer>();
-    }
-
+    //sync the idle sound and gives the right camera
     void ReSyncPortals() 
     {
         Boolean doExist = true;
@@ -72,17 +63,14 @@ public class PortalManager : MonoBehaviour
         {
             portals[0].GetComponentInChildren<PortalCamera>().UpdateOtherPortal(portals[1].transform);
             portals[1].GetComponentInChildren<PortalCamera>().UpdateOtherPortal(portals[0].transform);
+            //sync idle sound
+            portals[0].GetComponentInChildren<AudioSource>().Stop();
+            portals[1].GetComponentInChildren<AudioSource>().Stop();
+            portals[0].GetComponentInChildren<AudioSource>().Play();
+            portals[1].GetComponentInChildren<AudioSource>().Play();
         }
     }
-
-    public void ChangePortalColor(int noPortal,Color aColor)
-    {
-        if(noPortal < colorPortail.Length)
-        {
-            colorPortail[noPortal] = aColor;
-        }
-    }
-
+    //find wich portal is the closest and return its index
     private int FindPortals(Vector3 position)
     {
         float maxDistance = -1;
@@ -106,7 +94,29 @@ public class PortalManager : MonoBehaviour
         }
         return index;
     }
+    #endregion
 
+    #region PortalVisual
+    /*check if both setmaterial used Etienne Cloutier 08 november*/
+    void SetMaterial(GameObject portal, PortalCamera aCamera, Color aColor)
+    {
+        portal.GetComponentInChildren<PortalCenter>().GetComponent<Renderer>().material = aCamera.GetMaterial();
+        portal.GetComponentInChildren<PortalContour>().GetComponent<Renderer>().material.color = aColor;
+    }
+    void SetMaterial(GameObject portal, Color color)
+    {
+        Renderer portalRender = portal.GetComponentInChildren<PortalCenter>().GetComponent<Renderer>();
+    }
+    public void ChangePortalColor(int noPortal, Color aColor)
+    {
+        if (noPortal < colorPortail.Length)
+        {
+            colorPortail[noPortal] = aColor;
+        }
+    }
+    #endregion
+
+    #region Offset calculation
     private Vector3 ChangePositionOffset(Vector3 position,Transform portal,Transform otherPortal)
     {
         Vector3 playerOffsetFromPortal = ( position - portal.position);
@@ -119,14 +129,12 @@ public class PortalManager : MonoBehaviour
         position = otherPortal.position + itemOffsetFromOtherPortal;
         return position;
     }
-
     private Quaternion ChangeRotationOffset(Quaternion rotation,Transform portal,Transform otherPortal)
     {
         Quaternion reverse = new Quaternion(0, 1, 0, 0);
         rotation = otherPortal.rotation * reverse * Quaternion.Inverse(portal.rotation) * rotation;
         return rotation;
     }
-
     public Vector3 GetOffsetPosition(Vector3 pos)
     {
         Vector3 position = pos;
@@ -157,6 +165,8 @@ public class PortalManager : MonoBehaviour
         }
         return rotation;
     }    
+    //check if velocity used 
+    //Etienne Cloutier 08 november
     public Vector3 GetOffsetVelocity(Vector3 item,Vector3 pos)
     {
         print("I"+item);
@@ -178,4 +188,20 @@ public class PortalManager : MonoBehaviour
         print("v"+velocity);
         return velocity;
     }
+    #endregion  
+    
+    #region others
+    //function caled when traveler goes into a portal
+    public void Traveling()
+    {
+        foreach (GameObject portal in portals)
+        {
+            if (portal != null)
+            {
+                portal.GetComponentInChildren<AudioSource>().PlayOneShot(teleportSound);
+            }
+        }
+    }
+
+    #endregion
 }

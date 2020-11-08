@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsGrounded { get { return isGrounded; } }
 
-
     //pour si on change les touches
     private KeyCode forward = KeyCode.W;
     private KeyCode backward = KeyCode.S;

@@ -53,6 +53,12 @@ public class Grab : MonoBehaviour
             }
         }
     }
+
+    public Vector3 GetDestination()
+    {
+        return grabDestination.destination;
+    }
+
     void PickUp()
     {
         RaycastHit hit;
@@ -66,10 +72,6 @@ public class Grab : MonoBehaviour
                 grabbedItem.Grab(this);
             }
         }
-    }
-    public Vector3 GetDestination()
-    {
-        return grabDestination.destination;
     }
 
     public void Release()

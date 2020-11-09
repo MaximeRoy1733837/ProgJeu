@@ -323,11 +323,11 @@ GameObject:
   - component: {fileID: 6627247984310788270}
   - component: {fileID: 6627247984310788271}
   - component: {fileID: 6627247984310788266}
-  - component: {fileID: 7275568488768029378}
   - component: {fileID: -4098283163560127898}
   - component: {fileID: 5495614663146465951}
   - component: {fileID: -5591330521756951145}
   - component: {fileID: 718415423}
+  - component: {fileID: 8206245065787469023}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -423,20 +423,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4cd143993357a4892efe237f525e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7275568488768029378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6627247984310788241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f9a5788ff6bb2a4289fc6479ed67582, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PortalPrefab: {fileID: 323527688066456085, guid: a044087ae589ebb4d875b00685d47683,
-    type: 3}
 --- !u!114 &-4098283163560127898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,7 +461,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f98c5e2b26aab4a857314600c4df59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabDistance: 1
+  trowForce: 100
+  cam: {fileID: 0}
 --- !u!54 &718415423
 Rigidbody:
   m_ObjectHideFlags: 0

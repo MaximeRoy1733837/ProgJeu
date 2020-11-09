@@ -27,8 +27,7 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
-      human bone 'LeftFoot' not found\n"
+    rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -36,7 +35,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -202,162 +201,7 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton:
-    - name: Player(Clone)
-      parentName: 
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Armature.001
-      parentName: Player(Clone)
-      position: {x: 0.13085747, y: 1.4000001, z: -0.057443082}
-      rotation: {x: -0.50000006, y: 0.4999999, z: 0.5, w: 0.5}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Taille
-      parentName: Armature.001
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0.70707196, y: 0.007017155, z: -0.007017155, w: 0.70707196}
-      scale: {x: 1, y: 1, z: 1}
-    - name: CuisseD
-      parentName: Taille
-      position: {x: -0, y: -0.00531733, z: 0.23922315}
-      rotation: {x: 0.9967971, y: -0.0059073674, z: -0.0004726491, w: 0.07975258}
-      scale: {x: 0.99999994, y: 0.9999999, z: 1.0000002}
-    - name: Bone.014
-      parentName: CuisseD
-      position: {x: 0.0000000010621592, y: 0.6987107, z: -0.000000006715709}
-      rotation: {x: -0.6649118, y: -0.00000044556865, z: 0.00000039668097, w: 0.74692196}
-      scale: {x: 0.99999994, y: 0.9999999, z: 0.9999998}
-    - name: Bone.014_end
-      parentName: Bone.014
-      position: {x: -0, y: 0.010468671, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Bone.015
-      parentName: CuisseD
-      position: {x: 0.0000000010621592, y: 0.6987107, z: -0.000000006715709}
-      rotation: {x: -0.6649118, y: -0.00000044556865, z: 0.00000039668097, w: 0.74692196}
-      scale: {x: 0.99999994, y: 0.9999999, z: 0.9999998}
-    - name: Bone.015_end
-      parentName: Bone.015
-      position: {x: -0, y: 0.010468671, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: TibiaD
-      parentName: CuisseD
-      position: {x: 0.0000000010621592, y: 0.6987107, z: -0.000000006715709}
-      rotation: {x: 0.036191843, y: -0.0022186153, z: 0.017876197, w: 0.9991825}
-      scale: {x: 0.9999998, y: 1, z: 0.9999999}
-    - name: TibiaD_end
-      parentName: TibiaD
-      position: {x: -0, y: 0.6, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: CuisseG
-      parentName: Taille
-      position: {x: -0, y: -0.00531733, z: -0.23922315}
-      rotation: {x: 0.9971816, y: -0.005786637, z: 0.00043414097, w: -0.07480132}
-      scale: {x: 0.99999994, y: 0.99999994, z: 1.000009}
-    - name: TibiaG
-      parentName: CuisseG
-      position: {x: -5.9572614e-10, y: 0.69793695, z: -0.000000012245437}
-      rotation: {x: -0.031234099, y: 0.00023278943, z: 0.0019555101, w: 0.99951017}
-      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
-    - name: TibiaG_end
-      parentName: TibiaG
-      position: {x: -0, y: 0.60000014, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Torse
-      parentName: Taille
-      position: {x: -0.0000000018626451, y: 0.99999994, z: 0}
-      rotation: {x: 0, y: 0, z: 0.017427295, w: 0.9998482}
-      scale: {x: 0.9999999, y: 0.9999999, z: 1}
-    - name: EpauleD
-      parentName: Torse
-      position: {x: -0, y: 0.70000017, z: 0}
-      rotation: {x: 0.7071068, y: 0.0000000309516, z: 0.000000030951597, w: 0.7071067}
-      scale: {x: 1, y: 1, z: 1}
-    - name: BicepsD
-      parentName: EpauleD
-      position: {x: -0, y: 0.7, z: -4.947651e-10}
-      rotation: {x: 0.68779194, y: 0.008521048, z: -0.008074528, w: 0.72581303}
-      scale: {x: 1, y: 1.0000001, z: 1.0000001}
-    - name: AvantBrasD
-      parentName: BicepsD
-      position: {x: 7.881482e-10, y: 0.70000005, z: -0.0000000027212081}
-      rotation: {x: 0.0000000331776, y: 0.00066601235, z: -0.012371284, w: 0.9999233}
-      scale: {x: 1, y: 1, z: 1}
-    - name: AvantBrasD_end
-      parentName: AvantBrasD
-      position: {x: -0, y: 0.6999999, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: EpauleG
-      parentName: Torse
-      position: {x: -0, y: 0.70000017, z: 0}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-      scale: {x: 1, y: 1, z: 1}
-    - name: BicepsG
-      parentName: EpauleG
-      position: {x: -0, y: 0.7, z: 0.0000000013096724}
-      rotation: {x: -0.68790704, y: -0.00587165, z: -0.0055654384, w: 0.7257537}
-      scale: {x: 1, y: 1, z: 0.99999994}
-    - name: AvantBrasG
-      parentName: BicepsG
-      position: {x: 0.0000000028439135, y: 0.69999987, z: 0.000000019219442}
-      rotation: {x: -0.000000023147045, y: 0.0010644579, z: 0.019865584, w: 0.9998021}
-      scale: {x: 1, y: 0.9999999, z: 0.99999994}
-    - name: AvantBrasG_end
-      parentName: AvantBrasG
-      position: {x: -0, y: 0.6999999, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Tete
-      parentName: Torse
-      position: {x: -0, y: 0.70000017, z: 0}
-      rotation: {x: 0.015642786, y: -0.05819378, z: 0.0035989434, w: 0.9981763}
-      scale: {x: 1.0000001, y: 1, z: 1}
-    - name: Tete_end
-      parentName: Tete
-      position: {x: -0, y: 0.70000005, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Circle
-      parentName: Player(Clone)
-      position: {x: 4.3228974, y: 2.7266386, z: 0.49719375}
-      rotation: {x: -0.017114438, y: 0.00000005936106, z: -0.000000025234888, w: 0.99985355}
-      scale: {x: 0.021725774, y: 0.021725776, z: 0.021725776}
-    - name: Player
-      parentName: Player(Clone)
-      position: {x: 0.13085747, y: 0, z: -0.057443082}
-      rotation: {x: -0.50000006, y: 0.4999999, z: 0.5, w: 0.5}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Visage
-      parentName: Player(Clone)
-      position: {x: 1.5246377, y: 3.0964224, z: 1.8996345}
-      rotation: {x: 0.019210901, y: 0.66471326, z: -0.003528225, w: 0.7468432}
-      scale: {x: 0.99999994, y: 0.99999994, z: 1}
-    - name: Bone
-      parentName: Visage
-      position: {x: 1.8476297, y: 0.5467508, z: -1.605111}
-      rotation: {x: 0.50000006, y: -0.49999994, z: 0.5, w: 0.5}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Bone_end
-      parentName: Bone
-      position: {x: -0, y: 0.280226, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Bone.001
-      parentName: Visage
-      position: {x: 1.8476297, y: 0.5467508, z: -1.605111}
-      rotation: {x: 0.50000006, y: -0.49999994, z: 0.5, w: 0.5}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Bone.001_end
-      parentName: Bone.001
-      position: {x: -0, y: 0.280226, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
+    skeleton: []
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -368,13 +212,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

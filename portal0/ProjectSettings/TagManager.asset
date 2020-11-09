@@ -7,7 +7,6 @@ TagManager:
   - Portable
   - Portal
   - Trap_pikes_small
-  - CheckPoint
   - Trap_fire_small
   layers:
   - Default

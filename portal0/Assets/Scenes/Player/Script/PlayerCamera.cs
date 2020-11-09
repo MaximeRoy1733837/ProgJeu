@@ -1,27 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Transactions;
-using TMPro;
 using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    private Rigidbody body;
-    private Rigidbody cam;
+    private CharacterController characterController;
+    private GameObject cameraOverlayBlood;
     private float cameraHorizontalSpeed = 2f;
-    private float cameraVerticalSpeed = 2f;
-    private float cameraH = 0f;
-    private float cameraV = 0f;
+    private float cameraVerticalSpeed = 2;
+    private float cameraYaw = 0f;
+    private float cameraPitch = 0f;
 
-    private bool f = true;
-
-
-   
     // Start is called before the first frame update
     void Start()
     {
-        body = GameObject.Find("Player").GetComponent<Rigidbody>();
-        cam = gameObject.GetComponent<Rigidbody>();
+        characterController = GameObject.Find("Player").GetComponent<CharacterController>();
+        cameraOverlayBlood = GameObject.Find("OverlayCamera");
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -33,27 +27,13 @@ public class PlayerCamera : MonoBehaviour
 
     void ChangeCameraDirection()
     {
-        cameraH += cameraHorizontalSpeed * Input.GetAxis("Mouse X");
-        cameraV -= cameraVerticalSpeed * Input.GetAxis("Mouse Y");
+        cameraYaw += cameraHorizontalSpeed * Input.GetAxis("Mouse X");
+        cameraPitch -= cameraVerticalSpeed * Input.GetAxis("Mouse Y");
+
         // Fait en sorte que la camera peut seulement regarder 90 degree en l'air et vers le bas
-        cameraV = Mathf.Clamp(cameraV, -90f, 90f);
-        cam.MoveRotation(Quaternion.Euler(new Vector3(cameraV, cameraH, 0f)));
-        body.MoveRotation(Quaternion.Euler(new Vector3(0, cameraH, 0)));
-    }
+        cameraPitch = Mathf.Clamp(cameraPitch, -90f, 90f);
 
-    /*public void RestRotation()
-    {
-       // f = false;
-        cameraH = transform.rotation.eulerAngles.x;
-        cameraV = transform.rotation.eulerAngles.y;
-        //cam.MoveRotation(Quaternion.Euler(new Vector3(cameraV, cameraH, 0f)));
-
-    }*/
-
-    public void setCameraRotation()
-    {
-        cameraH = gameObject.transform.rotation.y;
-        cameraV = gameObject.transform.rotation.x;
-
+        transform.eulerAngles = new Vector3(cameraPitch, cameraYaw, 0f);
+        characterController.transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
     }
 }

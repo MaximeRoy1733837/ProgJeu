@@ -30,35 +30,19 @@ public class Traveler : MonoBehaviour
                 PortalManager portalManager = portal.getPortalManager();
                 if (portalManager != null)
                 {
-                    //PlayerCamera playerCamera = gameObject.GetComponentInChildren<PlayerCamera>();
-
-                    /*if (playerCamera != null)
-                    {
-                        playerCamera.RestRotation();
-                    }*/
-
-                    //create new obj
-                    Vector3 originPos = transform.position;//new Vector3(transform.position.x,transform.position.y,transform.position.z);
+                    //save origine porsition rotation velocity
+                    Vector3 originPos = transform.position;
                     Quaternion originRot = transform.rotation;
                     Vector3 origineVelocity = body.velocity;
 
                     //change rotation
-                    /***********BUG**********
-                    la rotation est changer par player camera 
-                    il faut changer la rotation du joueur sans quelle sois re changer par player camera
-                    il faut modifier les valeurs horizontale et verticale de player camera
-                    Étienne Cloutier 02 Novembre 2020
-                    ************BUG END*********/
-
                     transform.rotation = portalManager.GetOffsetRotation(originRot,originPos);
                     //change position
                     transform.position = portalManager.GetOffsetPosition(originPos);
+                    //change velocity
                     body.velocity = portalManager.GetOffsetRotation(Quaternion.Euler(origineVelocity), originPos)*origineVelocity;
-                    /*if (playerCamera != null)
-                    {
-                        playerCamera.RestRotation();
-                    }*/
 
+                    portalManager.Traveling();
                 }
             }
         }

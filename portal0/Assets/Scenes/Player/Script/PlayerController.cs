@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
                 if (portalManager != null) {
 
                     characterController.enabled = false;
-                    portalManager.GetTpTransform(transform, transform);
+                   // portalManager.GetTpTransform(transform, transform);
                     characterController.enabled = true;
                 }
             }

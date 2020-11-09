@@ -46,7 +46,24 @@ public class Shoot : MonoBehaviour
                 GameObject aTransform = new GameObject();
                 aTransform.transform.position = hit.point;
                 aTransform.transform.rotation = Quaternion.LookRotation(hit.normal);
-                portalManager.CreatePortal(noPortal,aTransform.transform);
+                if(hit.transform.GetComponent<Wall>()!=null)
+                {
+                    portalManager.CreatePortal(noPortal,aTransform.transform); 
+                }
+                else
+                {
+                    float rotation = 0;
+                    if (Vector3.Dot(hit.transform.up, Vector3.down) > 0)
+                    {
+                        rotation = -gameObject.transform.rotation.eulerAngles.y;
+                    }
+                    else
+                    {
+                        rotation = gameObject.transform.rotation.eulerAngles.y + 180;
+                    }
+                        aTransform.transform.Rotate( new Vector3(0,0, rotation));
+                    portalManager.CreatePortal(noPortal, aTransform.transform);
+                }
                 Destroy(aTransform);
             }
         }

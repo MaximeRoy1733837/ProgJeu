@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody body;
     private PlayerCamera playerCamera;
+    public Animator anim;
 
 
     private float walkSpeed = 10f;
@@ -33,7 +34,10 @@ public class PlayerMovement : MonoBehaviour
     {
        // characterController = gameObject.GetComponent<CharacterController>();
         body = gameObject.GetComponent<Rigidbody>();
+        
         playerCamera = gameObject.GetComponentInChildren<PlayerCamera>();
+        anim.SetFloat("moving", 0);
+        anim.SetBool("Jumping", false);
     }
 
     // Update is called once per frame
@@ -49,28 +53,36 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 walkVelocity = new Vector3(transform.forward.x, 0.1f, transform.forward.z);
             body.AddForce(walkVelocity * walkSpeed, ForceMode.Acceleration);
+            anim.SetFloat("moving", 1);
+            
         }
         if (Input.GetKey(backward))
         {
             Vector3 walkVelocity = new Vector3(-transform.forward.x, 0.1f, -transform.forward.z);
             body.AddForce(walkVelocity * walkSpeed, ForceMode.Acceleration);
+            anim.SetFloat("moving", 1);
         }
         if (Input.GetKey(right))
         {
             Vector3 walkVelocity = new Vector3(transform.right.x, 0.1f, transform.right.z);
             body.AddForce(walkVelocity * walkSpeed, ForceMode.Acceleration);
+            anim.SetFloat("moving", 1);
         }
         if (Input.GetKey(left))
         {
             Vector3 walkVelocity = new Vector3(-transform.right.x, 0.1f, -transform.right.z);
             body.AddForce(walkVelocity * walkSpeed, ForceMode.Acceleration);
+            anim.SetFloat("moving", 1);           
         }
         if (Input.GetKeyDown(Jump) && jumpsUsed < numberOfJumps)
         {
             jumpsUsed++;
             Vector3 jumpVelocity = new Vector3(0, (jumpHeight * 50 / body.mass) + Mathf.Abs(body.velocity.y), 0);
             body.AddForce(jumpVelocity, ForceMode.Impulse);
+            anim.SetBool("Jumping", true);
         }
+        //anim.SetFloat("moving", 0);
+        //anim.SetBool("Jumping", false);
     }
     private void CheckIfGrounded()
     {

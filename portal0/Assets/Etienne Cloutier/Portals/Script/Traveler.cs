@@ -41,6 +41,9 @@ public class Traveler : MonoBehaviour
                     transform.position = portalManager.GetOffsetPosition(originPos);
                     //change velocity
                     body.velocity = portalManager.GetOffsetRotation(Quaternion.Euler(origineVelocity), originPos)*origineVelocity;
+                    GetComponentInChildren<PlayerCamera>().setCameraRotation();
+                    //cam.MoveRotation(Quaternion.Euler(new Vector3(portalManager.GetOffsetRotation(originRot, originPos).x, portalManager.GetOffsetRotation(originRot, originPos).y, portalManager.GetOffsetRotation(originRot, originPos).z)));
+
 
                     portalManager.Traveling();
                 }

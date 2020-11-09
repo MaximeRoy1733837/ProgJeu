@@ -9,7 +9,7 @@ public class PlayerCamera : MonoBehaviour
     private Rigidbody body;
     private Rigidbody cam;
     private float cameraHorizontalSpeed = 2f;
-    private float cameraVerticalSpeed = 2;
+    private float cameraVerticalSpeed = 2f;
     private float cameraH = 0f;
     private float cameraV = 0f;
 
@@ -49,4 +49,11 @@ public class PlayerCamera : MonoBehaviour
         //cam.MoveRotation(Quaternion.Euler(new Vector3(cameraV, cameraH, 0f)));
 
     }*/
+
+    public void setCameraRotation()
+    {
+        cameraH = gameObject.transform.rotation.y;
+        cameraV = gameObject.transform.rotation.x;
+
+    }
 }

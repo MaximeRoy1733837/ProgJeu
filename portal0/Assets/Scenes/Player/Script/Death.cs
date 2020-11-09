@@ -12,9 +12,11 @@ public class Death : MonoBehaviour
     public GameObject player;
     private UnityEngine.UI.Image FadeToBlack;
     private Color FadeToBlackColor;
+    public int life = 3;
 
     private void Start()
     {
+        
         this.FadeToBlack = GameObject.Find("FadeToBlack").GetComponent<UnityEngine.UI.Image>();
         this.FadeToBlackColor = GameObject.Find("FadeToBlack").GetComponent<UnityEngine.UI.Image>().color;
 
@@ -46,7 +48,14 @@ public class Death : MonoBehaviour
                 FadeToBlackTime -= Time.deltaTime;
             }
             FadeToBlackTime = 1.0f;
-            ReSpawn();
+            
+            life--;
+            if (life != 0)
+            {
+               ReSpawn();
+            }
+            
+            
         }
     }
 

@@ -22,7 +22,8 @@ public class PortalCamera : MonoBehaviour
     }
     void Start()
     {
-        playerCamera = FindObjectOfType<CharacterController>().transform;
+        playerCamera = portal.GetComponentInParent<SelfPortal>().getPortalManager().GetComponentInChildren<PlayerCamera>().transform;
+        //playerCamera = FindObjectOfType<CharacterController>().transform;
     }
     void Update()
     {   
@@ -62,5 +63,8 @@ public class PortalCamera : MonoBehaviour
     {
         return cameraMaterial;
     }
+
+  
+
 
 }

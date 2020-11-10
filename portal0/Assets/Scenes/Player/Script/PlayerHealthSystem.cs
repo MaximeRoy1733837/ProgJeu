@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 
 public class PlayerHealthSystem : MonoBehaviour {
-
+    public Death death;
     private float playerHealth = 100f;
     private float playerHealingRate = 25f;
     private float playerMaxHealth = 100f;
@@ -22,11 +22,16 @@ public class PlayerHealthSystem : MonoBehaviour {
     public float PlayerMaxHealth { get => playerMaxHealth; set => playerMaxHealth = value; }
     public bool IsDead { get => isDead; set => isDead = value; }
 
+    private void Start()
+    {
+        death = GameObject.FindObjectOfType<Death>();
+    }
+
     private void Update() {
 
         this.Heal(playerHealingRate * Time.deltaTime);
         //print("Health: " + this.playerHealth + '\n' + "Alpha: " + bloodOverlayColor.a);
-
+        
     }
 
     public void Initialize(float aHealth, float aMaxHealth) {
@@ -78,7 +83,10 @@ public class PlayerHealthSystem : MonoBehaviour {
             } else {
 
                 this.playerHealth = 0f;
-                this.isDead = true;
+                //this.isDead = true;
+                death.ReSpawn();
+
+                this.playerHealth = playerMaxHealth;
                 //Debug.Log("player is dead (" + this.playerHealth + ")");
 
             }

@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 
 public class CheckPoint : MonoBehaviour
 {
-    //public Death death;
+    public Death death;
 
     public Renderer renderer;
     public Material checkPointOff;
@@ -15,8 +15,10 @@ public class CheckPoint : MonoBehaviour
 
     void Start()
     {
+
+        death = GameObject.FindObjectOfType<Death>();
         audioSource = GetComponent<AudioSource>();
-        //death.SetSpawnPoint(0,0,0);
+        death.SetSpawnPoint(new Vector3(0,0,0));
     }
 
     void Update()
@@ -47,17 +49,18 @@ public class CheckPoint : MonoBehaviour
             audioSource.Play();
 
             //vider les lists
-            //death.viderList();
+            death.viderList();
 
             //set element au meme endroit
             GameObject[] gameobjects = FindObjectsOfType<GameObject>();
             foreach (GameObject gameObjectToMove in gameobjects)
             {
-                //death.SetObjetPosition(gameObjectToMove, gameObjectToMove.transform.position);
+                death.SetObjetPosition(gameObjectToMove, gameObjectToMove.transform.position);
             }
 
             //set SpawnPoint
-            //death.SetSpawnPoint(transform.position);
+            
+            death.SetSpawnPoint(transform.position);
         }
     }
 }

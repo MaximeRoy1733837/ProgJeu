@@ -32,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
     private KeyCode Jump = KeyCode.Space;
     void Start()
     {
-       // characterController = gameObject.GetComponent<CharacterController>();
         body = gameObject.GetComponent<Rigidbody>();
         
         playerCamera = gameObject.GetComponentInChildren<PlayerCamera>();

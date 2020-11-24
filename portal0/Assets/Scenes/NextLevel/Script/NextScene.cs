@@ -9,11 +9,11 @@ public class NextScene : MonoBehaviour
     public AudioClip nextSceneSound;
     public GameObject soundTransition;
     
-    private AudioSource myAudio;
+    //private AudioSource myAudio;
     private void OnTriggerEnter(Collider other)
     {
         
-        myAudio.PlayOneShot(nextSceneSound);
+       // myAudio.PlayOneShot(nextSceneSound);
         
         if (other.CompareTag("Player"))
         {
@@ -33,7 +33,7 @@ public class NextScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myAudio = GetComponent<AudioSource>();
+       // myAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

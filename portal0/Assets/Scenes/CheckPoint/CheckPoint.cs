@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
+//[RequireComponent(typeof(AudioSource))]
 public class CheckPoint : MonoBehaviour
 {
     public Death death;
@@ -12,13 +13,18 @@ public class CheckPoint : MonoBehaviour
     public Material checkPointOn;
 
     AudioSource audioSource;
+    //private AudioSource audioSource;
+    //private AudioClip checkPointSound;
 
     void Start()
     {
 
         death = GameObject.FindObjectOfType<Death>();
         audioSource = GetComponent<AudioSource>();
-        //death.SetSpawnPoint(new Vector3(0,0,0));
+        death.SetSpawnPoint(new Vector3(0,0,0));
+
+        //audioSource = GetComponent<AudioSource>();
+        //checkPointSound = Resources.Load<AudioClip>("Audio/SoundCheckpoint");
     }
 
     void Update()
@@ -47,6 +53,7 @@ public class CheckPoint : MonoBehaviour
 
             //son
             audioSource.Play();
+            //audioSource.PlayOneShot(checkPointSound);
 
             //vider les lists
             /*death.viderList();
@@ -59,7 +66,7 @@ public class CheckPoint : MonoBehaviour
             }*/
 
             //set SpawnPoint
-            
+
             death.SetSpawnPoint(transform.position);
         }
     }

@@ -5,7 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Timeline;
-
+[RequireComponent(typeof(AudioSource))]
 public class PlayerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -30,6 +30,9 @@ public class PlayerMovement : MonoBehaviour
     private KeyCode left = KeyCode.A;
     private KeyCode right = KeyCode.D;
     private KeyCode Jump = KeyCode.Space;
+
+    private AudioSource audioSource;
+    private AudioClip movingSound;
     void Start()
     {
         body = gameObject.GetComponent<Rigidbody>();
@@ -37,6 +40,9 @@ public class PlayerMovement : MonoBehaviour
         playerCamera = gameObject.GetComponentInChildren<PlayerCamera>();
         anim.SetFloat("moving", 0);
         anim.SetBool("Jumping", false);
+
+        audioSource = GetComponent<AudioSource>();
+        movingSound = Resources.Load<AudioClip>("Audio/BruitPas2");
     }
 
     // Update is called once per frame
@@ -53,25 +59,29 @@ public class PlayerMovement : MonoBehaviour
             Vector3 walkVelocity = new Vector3(transform.forward.x, 0.1f, transform.forward.z);
             body.AddForce(walkVelocity * walkSpeed, ForceMode.Acceleration);
             anim.SetFloat("moving", 1);
-            
+            Debug.Log("bruit pas");
+            audioSource.PlayOneShot(movingSound);
         }
         if (Input.GetKey(backward))
         {
             Vector3 walkVelocity = new Vector3(-transform.forward.x, 0.1f, -transform.forward.z);
             body.AddForce(walkVelocity * walkSpeed, ForceMode.Acceleration);
             anim.SetFloat("moving", 1);
+            audioSource.PlayOneShot(movingSound);
         }
         if (Input.GetKey(right))
         {
             Vector3 walkVelocity = new Vector3(transform.right.x, 0.1f, transform.right.z);
             body.AddForce(walkVelocity * walkSpeed, ForceMode.Acceleration);
             anim.SetFloat("moving", 1);
+            audioSource.PlayOneShot(movingSound);
         }
         if (Input.GetKey(left))
         {
             Vector3 walkVelocity = new Vector3(-transform.right.x, 0.1f, -transform.right.z);
             body.AddForce(walkVelocity * walkSpeed, ForceMode.Acceleration);
-            anim.SetFloat("moving", 1);           
+            anim.SetFloat("moving", 1);
+            audioSource.PlayOneShot(movingSound);
         }
         if (Input.GetKeyDown(Jump) && jumpsUsed < numberOfJumps)
         {

@@ -18,7 +18,7 @@ public class CheckPoint : MonoBehaviour
 
         death = GameObject.FindObjectOfType<Death>();
         audioSource = GetComponent<AudioSource>();
-        death.SetSpawnPoint(new Vector3(0,0,0));
+        //death.SetSpawnPoint(new Vector3(0,0,0));
     }
 
     void Update()
@@ -49,14 +49,14 @@ public class CheckPoint : MonoBehaviour
             audioSource.Play();
 
             //vider les lists
-            death.viderList();
+            /*death.viderList();
 
             //set element au meme endroit
             GameObject[] gameobjects = FindObjectsOfType<GameObject>();
             foreach (GameObject gameObjectToMove in gameobjects)
             {
                 death.SetObjetPosition(gameObjectToMove, gameObjectToMove.transform.position);
-            }
+            }*/
 
             //set SpawnPoint
             

@@ -41,7 +41,7 @@ public class Death : MonoBehaviour
         if(layerPosition.y < 0)
         {
             
-            theDeath();         
+            ReSpawn();         
         }
     }
 

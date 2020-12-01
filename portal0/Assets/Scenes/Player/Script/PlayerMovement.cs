@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private KeyCode Jump = KeyCode.Space;
 
     AudioSource audioSource;
+    public AudioClip bruitSaut;
     void Start()
     {
         body = gameObject.GetComponent<Rigidbody>();
@@ -58,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
             body.AddForce(walkVelocity * walkSpeed, ForceMode.Acceleration);
             anim.SetFloat("moving", 1);
             Debug.Log("avance");
+
             if (!audioSource.isPlaying)
             {
                 audioSource.Play();
@@ -100,11 +102,10 @@ public class PlayerMovement : MonoBehaviour
             Vector3 jumpVelocity = new Vector3(0, (jumpHeight * 50 / body.mass) + Mathf.Abs(body.velocity.y), 0);
             body.AddForce(jumpVelocity, ForceMode.Impulse);
             anim.SetBool("Jumping", true);
-        }
-        else
-        {
             audioSource.Stop();
+            audioSource.PlayOneShot(bruitSaut);
         }
+
         //anim.SetFloat("moving", 0);
         //anim.SetBool("Jumping", false);
     }

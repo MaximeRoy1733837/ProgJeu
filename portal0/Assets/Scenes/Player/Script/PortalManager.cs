@@ -125,7 +125,7 @@ public class PortalManager : MonoBehaviour
         float py = Vector3.Dot(playerOffsetFromPortal, -portal.up);
         float pz = Vector3.Dot(playerOffsetFromPortal, portal.forward);
 
-        Vector3 itemOffsetFromOtherPortal = otherPortal.up * py + otherPortal.right * px + otherPortal.forward * pz;
+        Vector3 itemOffsetFromOtherPortal = otherPortal.up * -py + otherPortal.right * px + otherPortal.forward * pz;
         position = otherPortal.position + itemOffsetFromOtherPortal;
         return position;
     }

@@ -13,15 +13,18 @@ public class Shoot : MonoBehaviour
 
     private float portalCooldownLeft = 0;
 
+    public bool CanShoot { get; set; }
+
     void Start()
     {
+        CanShoot = true;
         portalManager = gameObject.GetComponent<PortalManager>();
         cam = GetComponentInChildren<Camera>();
     }
     void Update() 
     {
         portalCooldownLeft -= Time.deltaTime;
-        if (portalCooldownLeft <= 0)
+        if (portalCooldownLeft <= 0 && CanShoot)
         {
             if (Input.GetButtonDown("Fire1"))
             {

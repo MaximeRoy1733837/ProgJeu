@@ -18,11 +18,12 @@ public class PlayerMovement : MonoBehaviour
     private float walkSpeed = 10f;
     private float jumpHeight = 5f;
 
-    private int numberOfJumps = 20;
+    private int numberOfJumps = 200;
     private int jumpsUsed = 0;
     private bool isGrounded;
 
     public bool IsGrounded { get { return isGrounded; } }
+    public bool CanMove { get; set; }
 
     //pour si on change les touches
     private KeyCode forward = KeyCode.W;
@@ -35,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip bruitSaut;
     void Start()
     {
+        CanMove = true;
         body = gameObject.GetComponent<Rigidbody>();
         
         playerCamera = gameObject.GetComponentInChildren<PlayerCamera>();
@@ -48,9 +50,11 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         CheckIfGrounded();
-        Inputs();
+        if (CanMove)
+        {
+            Inputs();
+        }
     }
-
     private void Inputs()
     {
         if (Input.GetKey(forward))

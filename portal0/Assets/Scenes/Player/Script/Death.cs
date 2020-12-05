@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class Death : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class Death : MonoBehaviour
     private Color FadeToBlackColor;
     public AudioSource audio;
     public AudioClip deathSound;
-    public int life = 3;
+    public static int life = 3;
 
     private void Start()
     {
@@ -40,7 +41,7 @@ public class Death : MonoBehaviour
         if(layerPosition.y < 0)
         {
             
-            theDeath();         
+            ReSpawn();         
         }
     }
 
@@ -58,19 +59,22 @@ public class Death : MonoBehaviour
             FadeToBlackTime -= Time.deltaTime;
         }
         FadeToBlackTime = 1.0f;
-        int Alife = life;
+        //int Alife = life;
 
-        if (life > 0)
-        {
-            ReSpawn();
-            life = Alife - 1;
-        }
-        else if (life <= 0)
-        {
-            ReSpawn();
-            this.FadeToBlackColor.a = 1f;
-            this.FadeToBlack.color = this.FadeToBlackColor;
-        }
+        //if (life > 0)
+        //{
+        //    print("Pas mort encore");
+        //    ReSpawn();
+        //    life -= 1;
+        //}
+        //else if (life <= 0)
+        //{
+        //    print("Tu passe ici...");
+        //    SceneManager.LoadScene(1);
+        //    //ReSpawn();
+        //    //this.FadeToBlackColor.a = 1f;
+        //    //this.FadeToBlack.color = this.FadeToBlackColor;
+        //}
     }
 
 
@@ -89,9 +93,22 @@ public class Death : MonoBehaviour
     public void ReSpawn()
     {
         audio.PlayOneShot(deathSound,1f);
-        player.transform.position = respawnPoint;
+        life -= 1;
 
-        
+        if (life > 0)
+        {
+            player.transform.position = respawnPoint;
+            
+        }
+        else if (life <= 0)
+        {
+            life = 3;
+            SceneManager.LoadScene(0);
+            //ReSpawn();
+            //this.FadeToBlackColor.a = 1f;
+            //this.FadeToBlack.color = this.FadeToBlackColor;
+        }
+
 
         int cpt = 0;
        // foreach (GameObject gameObjectToMove in gameobjects)

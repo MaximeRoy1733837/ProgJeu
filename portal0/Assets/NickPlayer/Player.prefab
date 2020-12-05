@@ -1298,6 +1298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 6151318655665294345}
+  bruitSaut: {fileID: 8300000, guid: 31c0c39ce6b1d134fa62e51190933c63, type: 3}
 --- !u!114 &6151318655665294340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1376,9 +1377,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: be4beaedafc80fb4c89c827f9d85704b, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.852
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1469,7 +1470,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6457236525577088263}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66426e40bfbeb954eb677423df82fb15, type: 3}
   m_Name: 
@@ -1478,7 +1479,6 @@ MonoBehaviour:
   player: {fileID: 6457236525577088263}
   audio: {fileID: 0}
   deathSound: {fileID: 8300000, guid: 16d183eaf6a25824e9b46d1973a02932, type: 3}
-  life: 3
   gameobjects: []
   gameobjectsPosition: []
 --- !u!65 &6203097434511440751

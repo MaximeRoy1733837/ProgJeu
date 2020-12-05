@@ -16,10 +16,13 @@ public class PlayerCamera : MonoBehaviour
     private bool f = true;
 
 
+    public bool CanLook { get; set; }
+
    
     // Start is called before the first frame update
     void Start()
     {
+        CanLook = true;
         body = GameObject.Find("Player").GetComponent<Rigidbody>();
         cam = gameObject.GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -28,7 +31,10 @@ public class PlayerCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ChangeCameraDirection();
+        if (CanLook)
+        {
+            ChangeCameraDirection();
+        }
     }
 
     void ChangeCameraDirection()

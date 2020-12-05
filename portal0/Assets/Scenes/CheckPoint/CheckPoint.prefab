@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd82e917e7ec10545ae2a9d873c6064f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  death: {fileID: 0}
   renderer: {fileID: 8702852345695813959}
   checkPointOff: {fileID: 2100000, guid: d988430136e35d84ea679ed1d3045ea4, type: 2}
   checkPointOn: {fileID: 2100000, guid: 8592f67cf892ccd4091539eed38672e7, type: 2}

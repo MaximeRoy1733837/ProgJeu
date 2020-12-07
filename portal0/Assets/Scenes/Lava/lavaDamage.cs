@@ -20,13 +20,10 @@ public class lavaDamage : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        print(other.transform.tag);
-        //print("toucher");
         if (playerDamageCooldownValue <= 0)
         {
             if (other.transform.tag == "Player")
             {
-                
                 GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthSystem>().Damage(trapDamage);
                 playerDamageCooldownValue = playerDamageCooldown;
 

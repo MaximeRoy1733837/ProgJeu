@@ -62,7 +62,6 @@ public class PlayerMovement : MonoBehaviour
             Vector3 walkVelocity = new Vector3(transform.forward.x, 0.1f, transform.forward.z);
             body.AddForce(walkVelocity * walkSpeed, ForceMode.Acceleration);
             anim.SetFloat("moving", 1);
-            Debug.Log("avance");
 
             if (!audioSource.isPlaying)
             {
@@ -107,11 +106,9 @@ public class PlayerMovement : MonoBehaviour
             body.AddForce(jumpVelocity, ForceMode.Impulse);
             anim.SetBool("Jumping", true);
             audioSource.Stop();
-            audioSource.PlayOneShot(bruitSaut);
+            audioSource.PlayOneShot(bruitSaut,0.2f);
         }
 
-        //anim.SetFloat("moving", 0);
-        //anim.SetBool("Jumping", false);
     }
     private void CheckIfGrounded()
     {

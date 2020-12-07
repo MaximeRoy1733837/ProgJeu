@@ -3143,7 +3143,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7588426274100336418}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -4164,7 +4164,7 @@ GameObject:
   - component: {fileID: 5717531421768225404}
   - component: {fileID: 7973935545612429279}
   m_Layer: 0
-  m_Name: EtienneC
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4229,4 +4229,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\xC9tienne Cloutier Programmer"
+  m_Text: "\xC9tienne Cloutier Programmer\nSam\nsam\nnick\nmax"

@@ -6,6 +6,6 @@ public class ReturnMenuButton : MonoBehaviour
 {
     public void ReturnToMenu()
     {
-        FindObjectOfType<ManagerToDelete>().BackToMenu();
+        FindObjectOfType<PortalGameManager>().BackToMenu();
     }
 }

@@ -6,7 +6,6 @@ public class LvlSelectButton : MonoBehaviour
 {
     public void LevelSelectClick()
     {
-        print("LevelSelect");
-        FindObjectOfType<ManagerToDelete>().LevelSelection();
+        FindObjectOfType<PortalGameManager>().LevelSelection();
     }
 }

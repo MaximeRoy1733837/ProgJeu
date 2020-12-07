@@ -6,7 +6,6 @@ public class StartButton : MonoBehaviour
 {
     public void StartClick()
     {
-        print("Starting...");
-        FindObjectOfType<ManagerToDelete>().StartGame();
+        FindObjectOfType<PortalGameManager>().StartGame();
     }
 }

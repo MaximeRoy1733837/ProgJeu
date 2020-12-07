@@ -1391,6 +1391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 6151318655665294345}
+  CanMove: 1
   bruitSaut: {fileID: 8300000, guid: 31c0c39ce6b1d134fa62e51190933c63, type: 3}
 --- !u!114 &6151318655665294340
 MonoBehaviour:

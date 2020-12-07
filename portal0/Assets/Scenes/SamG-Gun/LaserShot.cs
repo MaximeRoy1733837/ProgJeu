@@ -12,18 +12,13 @@ public class LaserShot : MonoBehaviour
     public AudioClip laserSound;
 
     public float shootForce = 90.0f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     private void OnFireGun()
     {
         if (LaserBeamPrefab != null)
         {
             CreateAndFireBullet(laserPos);
-            audio.PlayOneShot(laserSound, 1f);
+            audio.PlayOneShot(laserSound, 0.3f);
         }
     }
 
@@ -37,9 +32,13 @@ public class LaserShot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
-            OnFireGun();
+            if (GameObject.FindObjectOfType<Shoot>() !=null && GameObject.FindObjectOfType<Shoot>().CanShoot)
+            {
+                OnFireGun();
+            }
         }
     }
 }

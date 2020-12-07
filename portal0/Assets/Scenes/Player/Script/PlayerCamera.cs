@@ -22,10 +22,8 @@ public class PlayerCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CanLook = true;
         body = GameObject.Find("Player").GetComponent<Rigidbody>();
         cam = gameObject.GetComponent<Rigidbody>();
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame

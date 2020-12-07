@@ -36,7 +36,6 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip bruitSaut;
     void Start()
     {
-        CanMove = true;
         body = gameObject.GetComponent<Rigidbody>();
         
         playerCamera = gameObject.GetComponentInChildren<PlayerCamera>();

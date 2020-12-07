@@ -11,6 +11,10 @@ TagManager:
   - Trap_fire_small
   - UIPause
   - UIMainMenu
+  - lumiereLave
+  - UIAboutUs
+  - UISettings
+  - UILevelSelection
   layers:
   - Default
   - TransparentFX

@@ -17,6 +17,7 @@ public class Shoot : MonoBehaviour
 
     void Start()
     {
+        CanShoot = true;
         portalManager = gameObject.GetComponent<PortalManager>();
         cam = GetComponentInChildren<Camera>();
     }

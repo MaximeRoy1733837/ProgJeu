@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Transactions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCamera : MonoBehaviour
 {
@@ -13,15 +14,13 @@ public class PlayerCamera : MonoBehaviour
     private float cameraH = 0f;
     private float cameraV = 0f;
 
-    private bool f = true;
-
-
     public bool CanLook { get; set; }
 
-   
+
     // Start is called before the first frame update
     void Start()
     {
+        CanLook = true;
         body = GameObject.Find("Player").GetComponent<Rigidbody>();
         cam = gameObject.GetComponent<Rigidbody>();
     }

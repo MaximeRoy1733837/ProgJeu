@@ -6,6 +6,6 @@ public class AboutButton : MonoBehaviour
 {
     public void AboutClick()
     {
-        FindObjectOfType<ManagerToDelete>().AboutUs();
+        FindObjectOfType<PortalGameManager>().AboutUs();
     }
 }

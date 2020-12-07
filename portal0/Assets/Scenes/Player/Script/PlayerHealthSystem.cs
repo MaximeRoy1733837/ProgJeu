@@ -42,7 +42,6 @@ public class PlayerHealthSystem : MonoBehaviour {
         this.audioSource = gameObject.GetComponent<AudioSource>();
         this.bloodOverlay = GameObject.Find("BloodOverlay").GetComponent<UnityEngine.UI.Image>();
         this.bloodOverlayColor = GameObject.Find("BloodOverlay").GetComponent<UnityEngine.UI.Image>().color;
-        print("first");
     }
 
     public void Heal(float aHealAmount) {

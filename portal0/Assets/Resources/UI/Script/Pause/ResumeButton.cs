@@ -6,7 +6,6 @@ public class ResumeButton : MonoBehaviour
 {
    public void Resume()
     {
-        print("test");
-        FindObjectOfType<ManagerToDelete>().Pause();
+        FindObjectOfType<PortalGameManager>().Pause();
     }
 }

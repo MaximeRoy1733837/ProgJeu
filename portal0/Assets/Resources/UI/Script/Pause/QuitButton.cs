@@ -6,6 +6,6 @@ public class QuitButton : MonoBehaviour
 {
     public void QuitClick()
     {
-        FindObjectOfType<ManagerToDelete>().QuitGame();
+        FindObjectOfType<PortalGameManager>().QuitGame();
     }
 }

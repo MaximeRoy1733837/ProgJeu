@@ -6,6 +6,6 @@ public class SettingsButton : MonoBehaviour
 {
     public void SettingsClick()
     {
-        FindObjectOfType<ManagerToDelete>().Settings();
+        FindObjectOfType<PortalGameManager>().Settings();
     }
 }

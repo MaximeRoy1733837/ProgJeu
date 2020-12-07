@@ -8,6 +8,9 @@ public class LaserShot : MonoBehaviour
 
     public  Transform LaserBeamPrefab;
 
+    public AudioSource audio;
+    public AudioClip laserSound;
+
     public float shootForce = 90.0f;
     // Start is called before the first frame update
     void Start()
@@ -20,6 +23,7 @@ public class LaserShot : MonoBehaviour
         if (LaserBeamPrefab != null)
         {
             CreateAndFireBullet(laserPos);
+            audio.PlayOneShot(laserSound, 1f);
         }
     }
 

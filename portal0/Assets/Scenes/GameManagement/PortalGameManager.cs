@@ -29,7 +29,7 @@ public class PortalGameManager : MonoBehaviour
             audioSource.clip=audioClipBackGround;
             audioSource.Play();
             audioSource.volume = 0.5f;
-
+            print("start");
             LoadSceneByIndex(0);
             BackToMenu();
         }
@@ -68,6 +68,7 @@ public class PortalGameManager : MonoBehaviour
     {
         if(SceneManager.GetActiveScene().buildIndex == 0)
         {
+            print("startGame");
             LoadSceneByIndex(1);
         }
         CleanUI();
@@ -139,12 +140,14 @@ public class PortalGameManager : MonoBehaviour
     {
         try
         {
+            
+            print("loadScene");
+            print(aIndex);
             SceneManager.LoadScene(aIndex);
 
         }
         catch (System.Exception)
         {
-
             throw;
         }
         /*if(aIndex>=0 && aIndex<2)

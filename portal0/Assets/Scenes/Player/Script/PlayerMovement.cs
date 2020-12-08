@@ -18,11 +18,12 @@ public class PlayerMovement : MonoBehaviour
     private float walkSpeed = 10f;
     private float jumpHeight = 5f;
 
-    private int numberOfJumps = 20;
+    private int numberOfJumps = 200;
     private int jumpsUsed = 0;
     private bool isGrounded;
 
     public bool IsGrounded { get { return isGrounded; } }
+    public bool CanMove { get; set; }
 
     //pour si on change les touches
     private KeyCode forward = KeyCode.W;
@@ -35,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip bruitSaut;
     void Start()
     {
+        CanMove = true;
         body = gameObject.GetComponent<Rigidbody>();
         
         playerCamera = gameObject.GetComponentInChildren<PlayerCamera>();
@@ -48,9 +50,11 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         CheckIfGrounded();
-        Inputs();
+        if (CanMove)
+        {
+            Inputs();
+        }
     }
-
     private void Inputs()
     {
         if (Input.GetKey(forward))
@@ -58,7 +62,6 @@ public class PlayerMovement : MonoBehaviour
             Vector3 walkVelocity = new Vector3(transform.forward.x, 0.1f, transform.forward.z);
             body.AddForce(walkVelocity * walkSpeed, ForceMode.Acceleration);
             anim.SetFloat("moving", 1);
-            Debug.Log("avance");
 
             if (!audioSource.isPlaying)
             {
@@ -103,11 +106,9 @@ public class PlayerMovement : MonoBehaviour
             body.AddForce(jumpVelocity, ForceMode.Impulse);
             anim.SetBool("Jumping", true);
             audioSource.Stop();
-            audioSource.PlayOneShot(bruitSaut);
+            audioSource.PlayOneShot(bruitSaut,0.2f);
         }
 
-        //anim.SetFloat("moving", 0);
-        //anim.SetBool("Jumping", false);
     }
     private void CheckIfGrounded()
     {

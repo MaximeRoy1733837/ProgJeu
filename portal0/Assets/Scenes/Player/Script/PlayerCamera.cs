@@ -44,15 +44,6 @@ public class PlayerCamera : MonoBehaviour
         body.MoveRotation(Quaternion.Euler(new Vector3(0, cameraH, 0)));
     }
 
-    /*public void RestRotation()
-    {
-       // f = false;
-        cameraH = transform.rotation.eulerAngles.x;
-        cameraV = transform.rotation.eulerAngles.y;
-        //cam.MoveRotation(Quaternion.Euler(new Vector3(cameraV, cameraH, 0f)));
-
-    }*/
-
     public void setCameraRotation()
     {
         cameraH = gameObject.transform.rotation.y;

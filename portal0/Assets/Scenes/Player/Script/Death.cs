@@ -26,18 +26,12 @@ public class Death : MonoBehaviour
         this.FadeToBlackColor.a = 0;
         this.FadeToBlack.color = this.FadeToBlackColor;
         player = GameObject.Find("Player");
-
-        //Vector3 layerPosition = (GameObject.Find("Your_Name_Here").transform.position);
-        //print(layerPosition);
     }
-    // Update is called once per frame
     private void Update()
     {
 
         
         Vector3 layerPosition = player.transform.position;
-       // print("updateDeath");
-        print(layerPosition);
         if(layerPosition.y < 0)
         {
             
@@ -51,7 +45,6 @@ public class Death : MonoBehaviour
         this.FadeToBlackColor.a = 1f;
         this.FadeToBlack.color = this.FadeToBlackColor;
 
-        //print(FadeToBlackTime);
         while (FadeToBlackTime > 0)
         {
             this.FadeToBlackColor.a = FadeToBlackTime;
@@ -59,22 +52,6 @@ public class Death : MonoBehaviour
             FadeToBlackTime -= Time.deltaTime;
         }
         FadeToBlackTime = 1.0f;
-        //int Alife = life;
-
-        //if (life > 0)
-        //{
-        //    print("Pas mort encore");
-        //    ReSpawn();
-        //    life -= 1;
-        //}
-        //else if (life <= 0)
-        //{
-        //    print("Tu passe ici...");
-        //    SceneManager.LoadScene(1);
-        //    //ReSpawn();
-        //    //this.FadeToBlackColor.a = 1f;
-        //    //this.FadeToBlack.color = this.FadeToBlackColor;
-        //}
     }
 
 
@@ -102,20 +79,12 @@ public class Death : MonoBehaviour
         }
         else if (life <= 0)
         {
-            life = 3;
             SceneManager.LoadScene(0);
-            //ReSpawn();
-            //this.FadeToBlackColor.a = 1f;
-            //this.FadeToBlack.color = this.FadeToBlackColor;
+            life = 3;
+            
+
         }
 
-
-        int cpt = 0;
-       // foreach (GameObject gameObjectToMove in gameobjects)
-        //{
-            //gameObjectToMove.transform.position = gameobjectsPosition[cpt];
-            //cpt++;
-        //}
     }
 
 

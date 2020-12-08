@@ -27,14 +27,12 @@ public class Death : MonoBehaviour
         this.FadeToBlack.color = this.FadeToBlackColor;
         player = GameObject.Find("Player");
     }
+    // Update is called once per frame
     private void Update()
     {
-
-        
         Vector3 layerPosition = player.transform.position;
         if(layerPosition.y < 0)
         {
-            
             ReSpawn();         
         }
     }
@@ -45,6 +43,7 @@ public class Death : MonoBehaviour
         this.FadeToBlackColor.a = 1f;
         this.FadeToBlack.color = this.FadeToBlackColor;
 
+        //print(FadeToBlackTime);
         while (FadeToBlackTime > 0)
         {
             this.FadeToBlackColor.a = FadeToBlackTime;
@@ -79,31 +78,20 @@ public class Death : MonoBehaviour
         }
         else if (life <= 0)
         {
-            SceneManager.LoadScene(0);
             life = 3;
-            
-
+            GameObject.FindObjectOfType<PortalGameManager>().LoadSceneByIndex(0);
+            GameObject.FindObjectOfType<PortalGameManager>().BackToMenu();
         }
-
     }
-
-
-
     public void SetSpawnPoint(Vector3 newPosition)
     {
         respawnPoint = newPosition;
     }
-
-
-
     public void SetObjetPosition(GameObject gameObjectToMove, Vector3 newPosition)
     {
         gameobjects.Add(gameObjectToMove);
         gameobjectsPosition.Add(newPosition);
     }
-
-
-
     public void viderList()
     {
         gameobjects.Clear();

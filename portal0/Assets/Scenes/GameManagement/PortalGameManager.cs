@@ -139,17 +139,15 @@ public class PortalGameManager : MonoBehaviour
     {
         try
         {
+            print("manager 142");
             SceneManager.LoadScene(aIndex);
-
         }
         catch (System.Exception)
         {
-
-            throw;
+            print("manager 147");
+            SceneManager.LoadScene(0);
+            BackToMenu();
         }
-        /*if(aIndex>=0 && aIndex<2)
-        {*/
-       // }
     }
 
 }

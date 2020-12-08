@@ -26,21 +26,13 @@ public class Death : MonoBehaviour
         this.FadeToBlackColor.a = 0;
         this.FadeToBlack.color = this.FadeToBlackColor;
         player = GameObject.Find("Player");
-
-        //Vector3 layerPosition = (GameObject.Find("Your_Name_Here").transform.position);
-        //print(layerPosition);
     }
     // Update is called once per frame
     private void Update()
     {
-
-        
         Vector3 layerPosition = player.transform.position;
-       // print("updateDeath");
-        print(layerPosition);
         if(layerPosition.y < 0)
         {
-            
             ReSpawn();         
         }
     }
@@ -59,22 +51,6 @@ public class Death : MonoBehaviour
             FadeToBlackTime -= Time.deltaTime;
         }
         FadeToBlackTime = 1.0f;
-        //int Alife = life;
-
-        //if (life > 0)
-        //{
-        //    print("Pas mort encore");
-        //    ReSpawn();
-        //    life -= 1;
-        //}
-        //else if (life <= 0)
-        //{
-        //    print("Tu passe ici...");
-        //    SceneManager.LoadScene(1);
-        //    //ReSpawn();
-        //    //this.FadeToBlackColor.a = 1f;
-        //    //this.FadeToBlack.color = this.FadeToBlackColor;
-        //}
     }
 
 
@@ -103,38 +79,19 @@ public class Death : MonoBehaviour
         else if (life <= 0)
         {
             life = 3;
-            SceneManager.LoadScene(0);
-            //ReSpawn();
-            //this.FadeToBlackColor.a = 1f;
-            //this.FadeToBlack.color = this.FadeToBlackColor;
+            GameObject.FindObjectOfType<PortalGameManager>().LoadSceneByIndex(0);
+            GameObject.FindObjectOfType<PortalGameManager>().BackToMenu();
         }
-
-
-        int cpt = 0;
-       // foreach (GameObject gameObjectToMove in gameobjects)
-        //{
-            //gameObjectToMove.transform.position = gameobjectsPosition[cpt];
-            //cpt++;
-        //}
     }
-
-
-
     public void SetSpawnPoint(Vector3 newPosition)
     {
         respawnPoint = newPosition;
     }
-
-
-
     public void SetObjetPosition(GameObject gameObjectToMove, Vector3 newPosition)
     {
         gameobjects.Add(gameObjectToMove);
         gameobjectsPosition.Add(newPosition);
     }
-
-
-
     public void viderList()
     {
         gameobjects.Clear();

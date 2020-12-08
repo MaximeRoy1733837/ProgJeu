@@ -18,8 +18,7 @@ public class Grab : MonoBehaviour
 
     private KeyCode grab = KeyCode.E;
     private KeyCode trow = KeyCode.R;
-    
-
+   
     private void Start()
     {
         grabDestination = cam.GetComponentInChildren<GrabDestination>();

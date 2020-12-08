@@ -137,14 +137,12 @@ public class PortalGameManager : MonoBehaviour
 
     public void LoadSceneByIndex(int aIndex)
     {
-        try
+        if (aIndex >= 0 && aIndex < 5)
         {
-            print("manager 142");
             SceneManager.LoadScene(aIndex);
         }
-        catch (System.Exception)
+        else
         {
-            print("manager 147");
             SceneManager.LoadScene(0);
             BackToMenu();
         }

@@ -36,7 +36,7 @@ public class Death : MonoBehaviour
         
         Vector3 layerPosition = player.transform.position;
        // print("updateDeath");
-        print(layerPosition);
+        //print(layerPosition);
         if(layerPosition.y < 0)
         {
             

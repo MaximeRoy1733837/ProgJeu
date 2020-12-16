@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 3882994519233779953}
   - component: {fileID: 3882994519233779952}
   - component: {fileID: 3882994519233779955}
+  - component: {fileID: 1993931838}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -273,6 +274,21 @@ MonoBehaviour:
   laserImpact: {fileID: 7530465344547906751, guid: b93eee9c7f1c4e7429fb7d169075b075,
     type: 3}
   trapDamage: 10
+--- !u!114 &1993931838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3882994519233779958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10d46c53fee1124a88990954a801ec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canMove: 0
+  state: 1
+  timeToRotate: 5
 --- !u!1001 &3882994519331115934
 PrefabInstance:
   m_ObjectHideFlags: 0

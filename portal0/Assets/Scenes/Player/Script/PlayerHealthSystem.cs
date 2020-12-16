@@ -30,7 +30,6 @@ public class PlayerHealthSystem : MonoBehaviour {
     private void Update() {
 
         this.Heal(playerHealingRate * Time.deltaTime);
-        //print("Health: " + this.playerHealth + '\n' + "Alpha: " + bloodOverlayColor.a);
         
     }
 
@@ -43,7 +42,6 @@ public class PlayerHealthSystem : MonoBehaviour {
         this.bloodOverlay = GameObject.Find("BloodOverlay").GetComponent<UnityEngine.UI.Image>();
         this.bloodOverlayColor = GameObject.Find("BloodOverlay").GetComponent<UnityEngine.UI.Image>().color;
     }
-
     public void Heal(float aHealAmount) {
         bloodOverlayColor.a = (1 - (this.playerHealth / this.playerMaxHealth));
         this.bloodOverlay.color = this.bloodOverlayColor;
@@ -53,17 +51,13 @@ public class PlayerHealthSystem : MonoBehaviour {
             if (this.playerHealth + aHealAmount < this.playerMaxHealth) {
 
                 this.playerHealth += aHealAmount;
-                //Debug.Log("health: " + this.playerHealth);
 
             } else {
 
                 this.playerHealth = this.playerMaxHealth;
-                //Debug.Log("health is full (" + this.playerHealth + ")");
-
             }
         }
     }
-
     public void Damage(float aDamageAmount) {
 
         this.bloodOverlayColor.a = 1 - (this.playerHealth / this.playerMaxHealth);
@@ -75,17 +69,13 @@ public class PlayerHealthSystem : MonoBehaviour {
             if (this.playerHealth - aDamageAmount > 0f) {
 
                 this.playerHealth -= aDamageAmount;
-                //Debug.Log("health: " + this.playerHealth);
 
             } else {
 
                 this.playerHealth = 0f;
-                //this.isDead = true;
                 death.ReSpawn();
 
                 this.playerHealth = playerMaxHealth;
-                //Debug.Log("player is dead (" + this.playerHealth + ")");
-
             }
         }
     }

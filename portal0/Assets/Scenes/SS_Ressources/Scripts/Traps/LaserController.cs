@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class LaserController : MonoBehaviour
 {
-    private Transform parentGameObjectTransform;
-
     public bool canMove = true;
     public ELaserMovementState state;
     public float timeToRotate = 2f;
 
     void Start()
     {
-        parentGameObjectTransform = transform.root;
     }
 
     void Update()
@@ -42,14 +39,14 @@ public class LaserController : MonoBehaviour
 
     private void MoveHorizontalByValue(float aMovingAngle) {
 
-        float degreePerSeconds = (parentGameObjectTransform.eulerAngles.y + aMovingAngle) / timeToRotate;
-        parentGameObjectTransform.Rotate(new Vector3(0, degreePerSeconds * Time.deltaTime, 0));
+        float degreePerSeconds = (transform.root.eulerAngles.y + aMovingAngle) / timeToRotate;
+        transform.root.Rotate(new Vector3(0, degreePerSeconds * Time.deltaTime, 0));
     }
 
     private void MoveVerticalByValue(float aMovingAngle) {
 
-        float degreePerSeconds = (parentGameObjectTransform.eulerAngles.x + aMovingAngle) / timeToRotate;
-        parentGameObjectTransform.Rotate(new Vector3(degreePerSeconds * Time.deltaTime, 0, 0));
+        float degreePerSeconds = (transform.root.eulerAngles.x + aMovingAngle) / timeToRotate;
+        transform.root.Rotate(new Vector3(degreePerSeconds * Time.deltaTime, 0, 0));
     }
 
     private void MoveRandom() {

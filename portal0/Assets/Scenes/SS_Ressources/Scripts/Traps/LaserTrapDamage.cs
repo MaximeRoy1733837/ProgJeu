@@ -33,8 +33,10 @@ public class LaserTrapDamage : MonoBehaviour
             if (raycastHit.collider) {
 
                 if (laserImpactCooldownValue <= 0) {
-                    SpawnLaserImpactPS(raycastHit.point, raycastHit.normal); 
+                    
+                    SpawnLaserImpactPS(raycastHit.point, new Vector3(raycastHit.normal.x , raycastHit.normal.z, raycastHit.normal.y));
                     laserImpactCooldownValue = laserImpactCooldown;
+                    print(raycastHit.normal);
 
                 }
 
@@ -50,11 +52,15 @@ public class LaserTrapDamage : MonoBehaviour
             lineRenderer.SetPosition(1, transform.root.forward * 10000);
 
         }
+        Vector3 lineRendererRotation = new Vector3(lineRenderer.transform.rotation.x - transform.root.rotation.x, lineRenderer.transform.rotation.y - transform.root.rotation.y, lineRenderer.transform.rotation.z - transform.root.rotation.z);
+        lineRenderer.transform.rotation = Quaternion.Euler(lineRendererRotation.x, lineRendererRotation.y, lineRendererRotation.z);
     }
 
     private void SpawnLaserImpactPS(Vector3 aHitPosition, Vector3 aHitRotation) {
 
-        Quaternion quaternion = Quaternion.Euler(aHitRotation.x, aHitRotation.y + 180, aHitRotation.z);
+        print("vec: " + aHitRotation);
+        Quaternion quaternion = new Quaternion(aHitRotation.x, aHitRotation.y, aHitRotation.z, 0);
+        print("quat: " + quaternion);
         GameObject laserImpactAtPosition = (GameObject)Instantiate(laserImpact, aHitPosition, quaternion);
         Destroy(laserImpactAtPosition, laserImpactCooldown);
     }

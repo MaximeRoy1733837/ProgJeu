@@ -43,7 +43,6 @@ public class PlayerHealthSystem : MonoBehaviour {
         this.bloodOverlayColor = GameObject.Find("BloodOverlay").GetComponent<UnityEngine.UI.Image>().color;
     }
     public void Heal(float aHealAmount) {
-
         bloodOverlayColor.a = (1 - (this.playerHealth / this.playerMaxHealth));
         this.bloodOverlay.color = this.bloodOverlayColor;
 

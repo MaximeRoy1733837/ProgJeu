@@ -48,18 +48,7 @@ public class CheckPoint : MonoBehaviour
             //son
             audioSource.Play();
 
-            //vider les lists
-            death.viderList();
-
-            //set element au meme endroit
-            GameObject[] gameobjects = FindObjectsOfType<GameObject>();
-            foreach (GameObject gameObjectToMove in gameobjects)
-            {
-                death.SetObjetPosition(gameObjectToMove, gameObjectToMove.transform.position);
-            }
-
             //set SpawnPoint
-            
             death.SetSpawnPoint(transform.position);
         }
     }

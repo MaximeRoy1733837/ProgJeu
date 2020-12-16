@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Transactions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCamera : MonoBehaviour
 {
@@ -13,22 +14,24 @@ public class PlayerCamera : MonoBehaviour
     private float cameraH = 0f;
     private float cameraV = 0f;
 
-    private bool f = true;
+    public bool CanLook { get; set; }
 
 
-   
     // Start is called before the first frame update
     void Start()
     {
+        CanLook = true;
         body = GameObject.Find("Player").GetComponent<Rigidbody>();
         cam = gameObject.GetComponent<Rigidbody>();
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        ChangeCameraDirection();
+        if (CanLook)
+        {
+            ChangeCameraDirection();
+        }
     }
 
     void ChangeCameraDirection()
@@ -40,15 +43,6 @@ public class PlayerCamera : MonoBehaviour
         cam.MoveRotation(Quaternion.Euler(new Vector3(cameraV, cameraH, 0f)));
         body.MoveRotation(Quaternion.Euler(new Vector3(0, cameraH, 0)));
     }
-
-    /*public void RestRotation()
-    {
-       // f = false;
-        cameraH = transform.rotation.eulerAngles.x;
-        cameraV = transform.rotation.eulerAngles.y;
-        //cam.MoveRotation(Quaternion.Euler(new Vector3(cameraV, cameraH, 0f)));
-
-    }*/
 
     public void setCameraRotation()
     {
